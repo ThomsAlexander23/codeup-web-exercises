@@ -38,4 +38,19 @@ var total_hours = facebook + google + amazon;
 var total_pay = alert ("You worked " + total_hours + " and got paid $" + total);
 
 
+//exercise 3.3: Course Schedule
+// student input
+var student_sched = prompt("how many credits do you have?");
+// credit cutoff & random full or not boolean
+var class_space = Math.random() < .5;
+var cut_off = 14;
+// enter class or not based on input with confirm
+var confirm = 0
+if ((student_sched <= cut_off) && class_space === true){
+  confirm = confirm("Space available, would you like to join the class?");
+  alert ("you have successfully been added, Good Luck!");
+}
+else {
+  alert("sorry either a schedule conflict or full class exists! Contact your advisor.")
+};
 console.log("Hello, from external Javascript");
