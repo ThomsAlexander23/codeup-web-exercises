@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 alert("Welcome to my Website!");
 var favorite_color = prompt("what is the best color in the whole wide world?");
@@ -8,4 +8,4 @@ var favorite_color = prompt("what is the best color in the whole wide world?");
   else {
     alert(favorite_color + "this is just plain wrong")
   };
-console.log("Hello, from external Javascript")
+console.log("Hello, from external Javascript");
