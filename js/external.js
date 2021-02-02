@@ -43,7 +43,7 @@ var total_pay = alert ("You worked " + total_hours + " and got paid $" + total_m
 // student input
 var student_sched = prompt("how many credits do you have?");
 // credit cutoff & random full or not boolean
-var class_space = .1;
+var class_space = Math.random();
 var cut_off = 14;
 // enter class or not based on input with confirm
 var confirmation = ""
