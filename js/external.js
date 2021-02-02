@@ -9,13 +9,13 @@ var favorite_color = prompt("what is the best color in the whole wide world?");
   }
   else {
     alert(favorite_color + "this is just plain wrong")
-  };
+  };*/
 
 //exercise 3.1: movie rental
-var lil_mermaid = prompt("how many nights did you rent The Little Mermaid?");
-var bro_bear = prompt("how many nights did you rent Brother Bear?");
-var hercules = prompt("how many nights did you rent Hercules");
-var price = prompt("what was the rental rate?");
+var lil_mermaid = parseInt(prompt("how many nights did you rent The Little Mermaid?"));
+var bro_bear = parseInt(prompt("how many nights did you rent Brother Bear?"));
+var hercules = parseInt(prompt("how many nights did you rent Hercules"));
+var price = parseInt(prompt("what was the rental rate?"));
 
 var money_for_rental = alert("You owe $" + (price * (lil_mermaid + bro_bear + hercules)));
 
@@ -53,4 +53,26 @@ if ((student_sched <= cut_off) && class_space === true){
 else {
   alert("sorry either a schedule conflict or full class exists! Contact your advisor.")
 };
+
+
+//exercise 3.4: Product Offer
+// user input and
+var member = confirm("are you a member?, OK for yes!");
+var cart = parseInt(prompt("how many items do you have in your cart?"));
+var original_price = parseInt(prompt( "what do is the cost of your item individually?"));
+var discount = .33;
+
+var price_total = original_price * cart;
+var discount_price = price_total * discount;
+var savings = price_total - discount_price
+if ((member === true) || (cart > 2)) {
+  alert("$" + price_total + " is your total before discount");
+  alert("This is your discounted price: $" + discount_price);
+  alert("You saved: $" + savings );
+}
+else {
+  alert("Your total is: $" + price_total);
+  alert("Become a member today and save: $" + savings);
+};
+
 console.log("Hello, from external Javascript");
