@@ -21,12 +21,12 @@ var money_for_rental = alert("You owe $" + (price * (lil_mermaid + bro_bear + he
 
 //exercise 3.2: pay period!
 // gather pay info
-var facebook = prompt("how many hours did you work at Facebook?");
-var facebookPay = prompt("what is your pay rate at Facebook");
-var google = prompt("how many hours did you work at Google?");
-var googlePay = prompt("what is your pay rate at Google");
-var amazon = prompt("how many hours did you work at Amazon?");
-var amazonPay = prompt("what is your pay rate at Amazon");
+var facebook = parseInt(prompt("how many hours did you work at Facebook?"));
+var facebookPay = parseInt(prompt("what is your pay rate at Facebook"));
+var google = parseInt(prompt("how many hours did you work at Google?"));
+var googlePay = parseInt(prompt("what is your pay rate at Google"));
+var amazon = parseInt(prompt("how many hours did you work at Amazon?"));
+var amazonPay = parseInt(prompt("what is your pay rate at Amazon"));
 // each company total pay
 var fb_chk = facebook * facebookPay;
 var goog_chk = google * googlePay;
@@ -61,10 +61,11 @@ var member = confirm("are you a member?, OK for yes!");
 var cart = parseInt(prompt("how many items do you have in your cart?"));
 var original_price = parseInt(prompt( "what do is the cost of your item individually?"));
 var discount = .33;
-
+// calculations
 var price_total = original_price * cart;
 var discount_price = price_total * discount;
-var savings = price_total - discount_price
+var savings = price_total - discount_price;
+// display alerts
 if ((member === true) || (cart > 2)) {
   alert("$" + price_total + " is your total before discount");
   alert("This is your discounted price: $" + discount_price);
