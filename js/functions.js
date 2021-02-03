@@ -59,17 +59,4 @@ function applyDiscount(price) {
 };
 // test for applyDiscount function
 console.log(applyDiscount(price, discount);
-/**
- * TODO:
- * Create a function named `applyDiscount`. This function should accept a price
- * (before a discount is applied), and a discount percentage (a number between 0
- * and 1). It should return the result of applying the discount to the original
- * price.
- *
- * Example:
- * > var originalPrice = 100;
- * > var dicountPercent = .2; // 20%
- * > applyDiscount(originalPrice, dicountPercent) // 80
- *
- * > applyDiscount(45.99, 0.12) // 40.4712
- */
+
