@@ -4,7 +4,7 @@
 name = prompt("what is your name?");
 function sayHello(name) {
     return ("Hello " + name + "!");
-};
+}
 var helloMessage = sayHello(name);
 console.log(helloMessage);
 
@@ -22,7 +22,7 @@ var random = Math.floor((Math.random() * 3) + 1);
 var number = parseFloat(prompt("enter the number two to win!"));
 function isTwo() {
     return (number === 2)
-};
+}
 // test for proper behavior with var number
 console.log(isTwo(number));
 // test for proper behavior with var random
@@ -34,7 +34,7 @@ var bill = parseFloat(prompt("how much was your bill"));
 var tip = parseFloat(prompt("enter tip percentage (example .15 = 15%"));
 function calculateTip(bill, tip) {
     return (bill * tip);
-};
+}
 // test for correct function behavior
 console.log(calculateTip(bill, tip));
 
@@ -43,9 +43,9 @@ console.log(calculateTip(bill, tip));
 var bill2 = parseFloat(prompt("how much was your bill"));
 var tip2 = parseFloat(prompt("enter tip percentage (example .15 = 15%"));
 function calculateTip2(bill2, tip2) {
-    return (bill2 * tip2);
     alert("You want to tip: $" + (bill2 * tip2));
-};
+    return (bill2 * tip2);
+}
 // test for correct function behavior of calculateTip2
 console.log(calculateTip2(bill2, tip2));
 
@@ -56,7 +56,7 @@ var discount = parseFloat(prompt("discount percentage (example: .15 = 15%"));
 function applyDiscount(price) {
     discount = 1 - discount;
     return (price - discount);
-};
+}
 // test for applyDiscount function
 console.log(applyDiscount(price, discount));
 
