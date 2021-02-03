@@ -67,15 +67,20 @@ var member = confirm("are you a member?, OK for yes!");
 var cart = parseInt(prompt("how many items do you have in your cart?"));
 var original_price = parseInt(prompt( "what do is the cost of your item individually?"));
 var discount = .66;
+var offerValid = 1
 // calculations
 var price_total = original_price * cart;
 var discount_price = price_total * discount;
 var savings = price_total - discount_price;
 // display alerts
 if ((member === true) || (cart > 2)) {
-  alert("$" + price_total + " is your total before discount");
-  alert("This is your discounted price: $" + discount_price);
-  alert("You saved: $" + savings );
+  if (offerValid == true) {
+    alert("$" + price_total + " is your total before discount");
+    alert("This is your discounted price: $" + discount_price);
+    alert("You saved: $" + savings );}
+  else {
+    alert("offer is not valid, your total remains $" + price_total)
+  }  
 }
 else {
   alert("Your total is: $" + price_total);
