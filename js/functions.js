@@ -54,9 +54,9 @@ console.log(calculateTip2(bill2, tip2));
 var price = parseFloat(prompt("what price is the object"));
 var discount = parseFloat(prompt("discount percentage (example: .15 = 15%"));
 function applyDiscount(price) {
-    discount = 1-discount;
+    discount = 1 - discount;
     return (price - discount);
 };
 // test for applyDiscount function
-console.log(applyDiscount(price, discount);
+console.log(applyDiscount(price, discount));
 
