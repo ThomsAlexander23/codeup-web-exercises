@@ -1,61 +1,29 @@
 "use strict";
+
+// added function for a hello message w/ var name = user info
 name = prompt("what is your name?");
 function sayHello(name) {
     return ("Hello " + name + "!");
-}
-/**
- * TODO:
- * Create a function called 'sayHello' that takes a parameter 'name'.
- * When called, the function should return a message that says hello to the passed in name.
- *
- * Example
- * > sayHello("codeup") // returns "Hello, codeup!"
- */
-
+};
 var helloMessage = sayHello(name);
 console.log(helloMessage);
-/**
- * TODO:
- * Call the function 'sayHello' and pass your name as a string literal argument.
- * Store the result of the function call in a variable named 'helloMessage'.
- *
- * console.log 'helloMessage' to check your work
- */
 
-
+// added my own name to var myName w/ hello message for myself
 var myName = "Alex"
 var myMessage = sayHello(myName);
 console.log(myMessage);
-
-/**
- * TODO:
- * Store your name as a string in a variable named 'myName', and pass that
- * variable to the 'sayHello' function. You should see the same output in the
- * console.
- */
 
 // Don't modify the following line, it generates a random number between 1 and 3
 // and stores it in a variable named random
 var random = Math.floor((Math.random() * 3) + 1);
 
-/**
- * TODO:
- * Create a function called 'isTwo' that takes a number as a parameter.
- * The function should return a boolean value based on whether or not the passed
- * number is the number 2.
- *
- * Example
- * > isTwo(1) // returns false
- * > isTwo(2) // returns true
- * > isTwo(3) // returns false
- *
- * Call the function 'isTwo' passing the variable 'random' as a argument.
- *
- * console.log *outside of the function* to check your work (you should see a
- * different result everytime you refresh the page if you are using the random
- * number)
- */
+var number = parseFloat(prompt("enter the number two to win!"));
+function isTwo() {
+    return (number === 2)
+};
+console.log(isTwo(number));
 
+console.log(isTwo(random));
 /**
  * TODO:
  * Create a function named 'calculateTip' to calculate a tip on a bill at a
