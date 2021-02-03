@@ -1,5 +1,8 @@
 "use strict";
 
+function sayHello(name) {
+    return ("Hello " + name + "!");
+}
 /**
  * TODO:
  * Create a function called 'sayHello' that takes a parameter 'name'.
@@ -9,6 +12,8 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
 
+var helloMessage = sayHello(name);
+console.log(helloMessage);
 /**
  * TODO:
  * Call the function 'sayHello' and pass your name as a string literal argument.
@@ -16,6 +21,11 @@
  *
  * console.log 'helloMessage' to check your work
  */
+
+
+var myName = "Alex"
+var myMessage = sayHello(myName);
+console.log(myMessage);
 
 /**
  * TODO:
