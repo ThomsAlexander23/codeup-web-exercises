@@ -1,5 +1,5 @@
 "use strict";
-
+name = prompt("what is your name?");
 function sayHello(name) {
     return ("Hello " + name + "!");
 }
