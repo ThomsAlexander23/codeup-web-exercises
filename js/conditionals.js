@@ -1,6 +1,6 @@
 "use strict";
 
-/* ########################################################################## */
+/* ##########################################################################*/
 //defined function analyzeColor() to take myColor against an array that will be looped
 // through and return a statement about it
 function analyzeColor() {
@@ -16,54 +16,71 @@ function analyzeColor() {
             colorComment = (colorItems[6]);
         }
     }
+    alert(colorComment);
     return (colorComment);
 }
 // test for function behavior of analyzeColor
 console.log(analyzeColor());
-/**
- * TODO:
- * Create a function named `analyzeColor` that accepts a string that is a color
- * name as input. This function should return a message that related to that
- * color. Only worry about the colors defined below, if the color passed is not
- * one of the ones defined below, return a message that says so
- *
- * Example:
- *  > analyzeColor('blue') // returns "blue is the color of the sky"
- *  > analyzeColor('red') // returns "Strawberries are red"
- *  > analyzeColor('cyan') // returns "I don't know anything about cyan"
- *
- * You should use an if-else-if-else block to return different messages.
- *
- * Test your function by passing various string literals to it and
- * console.logging the function's return value
-*/
+
 
 // Don't change the next two lines!
 // These lines create two variables for you:
 // - `colors`: a list of the colors of the rainbow
 // - `randomColor`: contains a single random color value from the list (this
 //                  will contain a different color every time the page loads)
+
+
+
 var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 var randomColor = colors[Math.floor(Math.random() * colors.length)];
-/**
- * TODO:
- * Pass the `randomColor` variable to your function and console.log the results.
- * You should see a different message every time you refresh the page
- */
 
-/**
- * TODO:
- * Refactor your above function to use a switch-case statement
- */
+// function analyzeColor adjusted to accept randomColor variable
+function analyzeColor_random() {
+    let myColor = randomColor;
+    let colorItems = ["Cherries are red", "Oranges are orange", "Sunflowers are yellow", "Cannabis is green", "The Mediterranean is blue", "I do not know anything by this color", "I do not know anything by this color"];
+    let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+    for (let i = 0; i < colors.length; i++) {
+        if (myColor === colors[i]) {
+            var colorComment = colorItems[i];
+            break;
+        } else {
+            colorComment = (colorItems[6]);
+        }
 
-/**
- * TODO:
- * Prompt the user for a color when the page loads, and pass the input from the
- * user to your `analyzeColor` function. Alert the return value from your
- * function to show it to the user.
- */
+    }
+    return (colorComment);
+}
+// test for function behavior of analyzeColor with a random color
+console.log(analyzeColor_random());
 
-/* ########################################################################## */
+// switch function for colorAnalyzer_random passing randomColor
+function switch_colorAnalyzer_random(randomColor) {
+    switch (randomColor) {
+        case "red":
+            alert("Cherries are red");
+            break;
+        case "orange":
+            alert("Oranges are orange");
+            break;
+        case "yellow":
+            alert("Sunflowers are yellow");
+            break;
+        case "green":
+            alert("Cannabis is green");
+            break;
+        case "blue":
+            alert("The Mediterranean is blue");
+            break;
+        default:
+            alert("I do not know anything of this color");
+            break;
+    }
+}
+// testing for correct switch behavior
+console.log(switch_colorAnalyzer_random(randomColor));
+
+
+
 
 /**
  * TODO:
