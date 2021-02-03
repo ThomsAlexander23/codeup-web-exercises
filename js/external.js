@@ -1,6 +1,6 @@
 "use strict";
 
-// Ensuring user knows they are here!
+/* Ensuring user knows they are here!
 alert("Welcome to my Website!");
 
 // does user favorite color match mine!
@@ -60,14 +60,14 @@ else {
   alert("sorry either a schedule conflict or full class exists! Contact your advisor.")
 };
 
-
+*/
 //exercise 3.4: Product Offer
 // user input and
 var member = confirm("are you a member?, OK for yes!");
 var cart = parseInt(prompt("how many items do you have in your cart?"));
 var original_price = parseInt(prompt( "what do is the cost of your item individually?"));
 var discount = .66;
-var offerValid = 1
+var offerValid = Math.random() < .5
 // calculations
 var price_total = original_price * cart;
 var discount_price = price_total * discount;
