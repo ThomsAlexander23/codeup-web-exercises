@@ -17,24 +17,25 @@ console.log(myMessage);
 // and stores it in a variable named random
 var random = Math.floor((Math.random() * 3) + 1);
 
+// var number from user and function created
 var number = parseFloat(prompt("enter the number two to win!"));
 function isTwo() {
     return (number === 2)
 };
+// test for proper behavior with var number
 console.log(isTwo(number));
-
+// test for proper behavior with var random
 console.log(isTwo(random));
-/**
- * TODO:
- * Create a function named 'calculateTip' to calculate a tip on a bill at a
- * restaurant. The function should accept a tip percentage and the total of the
- * bill, and return the amount to tip
- *
- * Examples:
- * > calculateTip(0.20, 20) // returns 4
- * > calculateTip(0.25, 25.50) // returns 6.375
- * > calculateTip(0.15, 33.42) // returns 5.013
- */
+
+
+// tip calculator function taking input from user and returns tip amount
+var bill = parseFloat(prompt("how much was your bill"));
+var tip = parseFloat(prompt("enter tip percentage (example .15 = 15%"));
+function calculateTip(bill, tip) {
+    return (bill * tip);
+};
+// test for correct function behavior
+console.log(calculateTip(bill, tip));
 
 /**
  * TODO:
