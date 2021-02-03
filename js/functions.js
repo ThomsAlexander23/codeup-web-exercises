@@ -37,13 +37,16 @@ function calculateTip(bill, tip) {
 // test for correct function behavior
 console.log(calculateTip(bill, tip));
 
-/**
- * TODO:
- * Use prompt and alert in combination with your calculateTip function to
- * prompt the user for the bill total and a percentage they would like to tip,
- * then display the dollar amount they should tip
- */
 
+// added alert to function calculateTip and renamed so as to not interfere with the other
+var bill2 = parseFloat(prompt("how much was your bill"));
+var tip2 = parseFloat(prompt("enter tip percentage (example .15 = 15%"));
+function calculateTip2(bill2, tip2) {
+    return (bill2 * tip2);
+    alert("You want to tip: $" + (bill2 * tip2));
+};
+// test for correct function behavior of calculateTip2
+console.log(calculateTip2(bill2, tip2));
 /**
  * TODO:
  * Create a function named `applyDiscount`. This function should accept a price
