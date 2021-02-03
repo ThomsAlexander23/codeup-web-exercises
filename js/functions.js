@@ -13,6 +13,7 @@ var myName = "Alex"
 var myMessage = sayHello(myName);
 console.log(myMessage);
 
+
 // Don't modify the following line, it generates a random number between 1 and 3
 // and stores it in a variable named random
 var random = Math.floor((Math.random() * 3) + 1);
@@ -47,6 +48,17 @@ function calculateTip2(bill2, tip2) {
 };
 // test for correct function behavior of calculateTip2
 console.log(calculateTip2(bill2, tip2));
+
+
+// user inputs price and discount var, created applyDiscount function
+var price = parseFloat(prompt("what price is the object"));
+var discount = parseFloat(prompt("discount percentage (example: .15 = 15%"));
+function applyDiscount(price) {
+    discount = 1-discount;
+    return (price - discount);
+};
+// test for applyDiscount function
+console.log(applyDiscount(price, discount);
 /**
  * TODO:
  * Create a function named `applyDiscount`. This function should accept a price
