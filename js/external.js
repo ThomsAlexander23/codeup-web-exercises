@@ -1,6 +1,6 @@
 "use strict";
 
-/* Ensuring user knows they are here!
+// Ensuring user knows they are here!
 alert("Welcome to my Website!");
 
 // does user favorite color match mine!
@@ -60,7 +60,8 @@ else {
   alert("sorry either a schedule conflict or full class exists! Contact your advisor.")
 };
 
-*/
+
+
 //exercise 3.4: Product Offer
 // user input and
 var member = confirm("are you a member?, OK for yes!");
