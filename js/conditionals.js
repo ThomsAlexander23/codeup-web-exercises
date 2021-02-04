@@ -1,7 +1,7 @@
 (function () {
     "use strict";
-
-    /* ##########################################################################*/
+/*
+    /* ##########################################################################
 //defined function analyzeColor() to take myColor against an array that will be looped
 // through and return a statement about it
     function analyzeColor() {
@@ -80,6 +80,39 @@
 
 // testing for correct switch behavior
     console.log(switch_colorAnalyzer_random(randomColor));
+
+**/
+    var random_luckyNumber = ((Math.random() * 5)+1);
+    var random_total = ((Math.random() * 1000) + 1);
+    function calculateTotal(luckyNumber = 0, total =  0) {
+        switch (luckyNumber) {
+            case 1:
+                let tenPercent = (total *(1- .1));
+                alert(tenPercent.toFixed(2));
+                break;
+            case 2:
+                let quarterPercent = (total * (1-.25));
+                alert(quarterPercent.toFixed(2));
+                break;
+            case 3:
+                let thirtyfivePercent = (total * (1-.35));
+                alert(thirtyfivePercent.toFixed(2));
+                break;
+            case 4:
+                let fiftyPercent = (total * (1-.5));
+                alert(fiftyPercent.toFixed(2));
+                break;
+            case 5:
+                let freePercent = (total * (1-1));
+                alert(freePercent.toFixed(2));
+                break;
+            default:
+                let noLuck = (total);
+                alert(noLuck.toFixed(2));
+                break;
+        }
+    }
+    console.log(calculateTotal(random_luckyNumber, random_total));
 
 
     /**
