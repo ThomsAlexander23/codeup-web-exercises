@@ -83,68 +83,74 @@
     console.log(switch_colorAnalyzer_random(randomColor));
 */
 // Exercise CalculateTotal: function passes two parameters to receive a lottery discount on purchase
-    //var random_luckyNumber = ((Math.random() * 5)+1);
-    //var random_total = ((Math.random() * 1000) + 1);
+    var total_bill = parseFloat(prompt("enter bill here"));
     function calculateTotal(luckyNumber = ((Math.floor(Math.random() * 5)+1)), total =  ((Math.floor(Math.random() * 1000) + 1))) {
-        switch (luckyNumber) {
-            case 1:
-                let tenPercent = (total *(1- .1));
-                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + tenPercent.toFixed(2));
-                break;
-            case 2:
-                let quarterPercent = (total * (1-.25));
-                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + quarterPercent.toFixed(2));
-                break;
-            case 3:
-                let thirtyfivePercent = (total * (1-.35));
-                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + thirtyfivePercent.toFixed(2));
-                break;
-            case 4:
-                let fiftyPercent = (total * (1-.5));
-                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + fiftyPercent.toFixed(2));
-                break;
-            case 5:
-                let freePercent = (total * (1-1));
-                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + freePercent.toFixed(2));
-                break;
-            default:
-                let noLuck = (total);
-                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + noLuck.toFixed(2));
-                break;
+        //when total_bill is not a valid bill amount; a random bill amount is generated
+        if (total_bill <= 0){
+            switch (luckyNumber) {
+                case 1:
+                    let tenPercent = (total *(1- .1));
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + tenPercent.toFixed(2));
+                    break;
+                case 2:
+                    let quarterPercent = (total * (1-.25));
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + quarterPercent.toFixed(2));
+                    break;
+                case 3:
+                    let thirtyfivePercent = (total * (1-.35));
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + thirtyfivePercent.toFixed(2));
+                    break;
+                case 4:
+                    let fiftyPercent = (total * (1-.5));
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + fiftyPercent.toFixed(2));
+                    break;
+                case 5:
+                    let freePercent = (total * (1-1));
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + freePercent.toFixed(2));
+                    break;
+                default:
+                    let noLuck = (total);
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + noLuck.toFixed(2));
+                    break;
+            }
         }
+        // when total_bill is valid amount function runs with total_bill as total value
+        else {
+            total = total_bill;
+            switch (luckyNumber) {
+                case 1:
+                    let tenPercent = (total *(1- .1));
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + tenPercent.toFixed(2));
+                    break;
+                case 2:
+                    let quarterPercent = (total * (1-.25));
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + quarterPercent.toFixed(2));
+                    break;
+                case 3:
+                    let thirtyfivePercent = (total * (1-.35));
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + thirtyfivePercent.toFixed(2));
+                    break;
+                case 4:
+                    let fiftyPercent = (total * (1-.5));
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + fiftyPercent.toFixed(2));
+                    break;
+                case 5:
+                    let freePercent = (total * (1-1));
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + freePercent.toFixed(2));
+                    break;
+                default:
+                    let noLuck = (total);
+                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + noLuck.toFixed(2));
+                    break;
+            }
+        }
+
     }
 
  // testing calculateTotal function with two random generated numbers
     console.log(calculateTotal());
 
 
-    /**
-     * TODO:
-     * Suppose there's a promotion in Walmart, each customer is given a randomly
-     * generated "lucky number" between 0 and 5. If your lucky number is 0 you have
-     * no discount, if your lucky number is 1 you'll get a 10% discount, if it's 2,
-     * the discount is 25%, if it's 3, 35%, if it's 4, 50%, and if it's 5 you'll get
-     * all for free!.
-     *
-     * Write a function named `calculateTotal` that accepts a lucky number and total
-     * amount, and returns the discounted price.
-     *
-     * Example:
-     * calculateTotal(0, 100) // returns 100
-     * calculateTotal(4, 100) // returns 50
-     * calculateTotal(5, 100) // returns 0
-     *
-     * Test your function by passing it various values and checking for the expected
-     * return value.
-
-
-    /**
-     * TODO:
-     * Uncomment the line below to generate a random number between 0 and 6.
-     * Prompt the user for their total bill, then use your `calculateTotal` function
-     * and alerts to display to the user what their lucky number was, what their
-     * price before the discount was, and what their price after the discount is.
-     */
 // Generate a random number between 0 and 6
 // var luckyNumber = Math.floor(Math.random() * 6);
 
