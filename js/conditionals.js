@@ -4,13 +4,11 @@
     /* ##########################################################################*/
 //defined function analyzeColor() to take myColor against an array that will be looped
 // through and return a statement about it
-
-    function analyzeColor() {
-        let myColor = prompt("Pick a color of the rainbow");
+    function analyzeColor(x) {
         let colorItems = ["Cherries are red", "Oranges are orange", "Sunflowers are yellow", "Cannabis is green", "The Mediterranean is blue", "I do not know anything by this color", "I do not know anything by this color"];
         let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
         for (let i = 0; i < colors.length; i++) {
-            if (myColor === colors[i]) {
+            if (x === colors[i]) {
                 var colorComment = colorItems[i];
                 break;
             } else {
@@ -21,8 +19,8 @@
         return (colorComment);
     }
 
-// test for function behavior of analyzeColor
-    console.log(analyzeColor());
+// // test for function behavior of analyzeColor
+     console.log(analyzeColor());
 
 
 // Don't change the next two lines!
@@ -37,19 +35,7 @@
 
 // function analyzeColor adjusted to accept randomColor variable
     function analyzeColor_random() {
-        let myColor = randomColor;
-        let colorItems = ["Cherries are red", "Oranges are orange", "Sunflowers are yellow", "Cannabis is green", "The Mediterranean is blue", "I do not know anything by this color", "I do not know anything by this color"];
-        let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-        for (let i = 0; i < colors.length; i++) {
-            if (myColor === colors[i]) {
-                var colorComment = colorItems[i];
-                break;
-            } else {
-                colorComment = (colorItems[6]);
-            }
-
-        }
-        return (colorComment);
+        analyzeColor(randomColor);
     }
 
 // test for function behavior of analyzeColor with a random color
@@ -172,7 +158,5 @@
     }
 // test for function behavior
     console.log(threePrompts());
-
-
 
 })();
