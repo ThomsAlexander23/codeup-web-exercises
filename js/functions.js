@@ -38,7 +38,6 @@ function calculateTip(bill, tip) {
 // test for correct function behavior
 console.log(calculateTip(bill, tip));
 
-
 // added alert to function calculateTip and renamed so as to not interfere with the other
 var bill2 = parseFloat(prompt("how much was your bill"));
 var tip2 = parseFloat(prompt("enter tip percentage (example .15 = 15%"));
