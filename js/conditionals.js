@@ -4,7 +4,7 @@
     /* ##########################################################################*/
 //defined function analyzeColor() to take myColor against an array that will be looped
 // through and return a statement about it
-/*
+
     function analyzeColor() {
         let myColor = prompt("pick a color of the rainbow");
         let colorItems = ["Cherries are red", "Oranges are orange", "Sunflowers are yellow", "Cannabis is green", "The Mediterranean is blue", "I do not know anything by this color", "I do not know anything by this color"];
@@ -81,9 +81,9 @@
 
 // testing for correct switch behavior
     console.log(switch_colorAnalyzer_random(randomColor));
-*/
+
 // Exercise CalculateTotal: function passes two parameters to receive a lottery discount on purchase
-/*
+
     var total_bill = parseFloat(prompt("enter bill here"));
     function calculateTotal(luckyNumber = ((Math.floor(Math.random() * 5)+1)), total =  ((Math.floor(Math.random() * 1000) + 1))) {
         //when total_bill is not a valid bill amount; a random bill amount is generated
@@ -149,7 +149,7 @@
 
  // testing calculateTotal function with two random generated numbers
     console.log(calculateTotal());
-*/
+
 
 // Generate a random number between 0 and 6
 // var luckyNumber = Math.floor(Math.random() * 6);
