@@ -83,6 +83,7 @@
     console.log(switch_colorAnalyzer_random(randomColor));
 */
 // Exercise CalculateTotal: function passes two parameters to receive a lottery discount on purchase
+/*
     var total_bill = parseFloat(prompt("enter bill here"));
     function calculateTotal(luckyNumber = ((Math.floor(Math.random() * 5)+1)), total =  ((Math.floor(Math.random() * 1000) + 1))) {
         //when total_bill is not a valid bill amount; a random bill amount is generated
@@ -144,30 +145,30 @@
                     break;
             }
         }
-
     }
 
  // testing calculateTotal function with two random generated numbers
     console.log(calculateTotal());
-
+*/
 
 // Generate a random number between 0 and 6
 // var luckyNumber = Math.floor(Math.random() * 6);
 
-    /**
-     * TODO:
-     * Write some JavaScript that uses a `confirm` dialog to ask the user if they
-     * would like to enter a number. If they click 'Ok', prompt the user for a
-     * number, then use 3 separate alerts to tell the user:
-     *
-     * - whether the number is even or odd
-     * - what the number plus 100 is
-     * - if the number is negative or positive
-     *
-     * if what the user enters is not a number, use an alert to tell them that, and
-     * do *not* display any of the above information.
-     *
-     * Can you refactor your code to use functions?
-     * HINT: The way we prompt for a value could be improved
-     */
+// function that asks for user permission; then gives two possible scenarios; one involves number outputs the other apologizes
+    function threePrompts(){
+        var numConfirm = confirm("Would you like to enter a number, to see three results?");
+        if (numConfirm === true) {
+            var userNum = parseFloat(prompt("Enter a number"));
+            var evenOdd = ((userNum % 2) === 1) ? "Odd" : "Even";
+            var posNeg = (userNum <= 0) ? "Negative" : "Positive";
+            var plus100 = (userNum + 100);
+            alert(evenOdd);
+            alert(plus100);
+            alert(posNeg);
+        }
+        else {
+            alert("Sorry we wasted your time.")
+        }
+    }
+
 })();
