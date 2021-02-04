@@ -1,9 +1,10 @@
 (function () {
     "use strict";
-/*
-    /* ##########################################################################
+
+    /* ##########################################################################*/
 //defined function analyzeColor() to take myColor against an array that will be looped
 // through and return a statement about it
+/*
     function analyzeColor() {
         let myColor = prompt("pick a color of the rainbow");
         let colorItems = ["Cherries are red", "Oranges are orange", "Sunflowers are yellow", "Cannabis is green", "The Mediterranean is blue", "I do not know anything by this color", "I do not know anything by this color"];
@@ -80,39 +81,41 @@
 
 // testing for correct switch behavior
     console.log(switch_colorAnalyzer_random(randomColor));
-
-**/
-    var random_luckyNumber = ((Math.random() * 5)+1);
-    var random_total = ((Math.random() * 1000) + 1);
-    function calculateTotal(luckyNumber = 0, total =  0) {
+*/
+// Exercise CalculateTotal: function passes two parameters to receive a lottery discount on purchase
+    //var random_luckyNumber = ((Math.random() * 5)+1);
+    //var random_total = ((Math.random() * 1000) + 1);
+    function calculateTotal(luckyNumber = ((Math.floor(Math.random() * 5)+1)), total =  ((Math.floor(Math.random() * 1000) + 1))) {
         switch (luckyNumber) {
             case 1:
                 let tenPercent = (total *(1- .1));
-                alert(tenPercent.toFixed(2));
+                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + tenPercent.toFixed(2));
                 break;
             case 2:
                 let quarterPercent = (total * (1-.25));
-                alert(quarterPercent.toFixed(2));
+                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + quarterPercent.toFixed(2));
                 break;
             case 3:
                 let thirtyfivePercent = (total * (1-.35));
-                alert(thirtyfivePercent.toFixed(2));
+                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + thirtyfivePercent.toFixed(2));
                 break;
             case 4:
                 let fiftyPercent = (total * (1-.5));
-                alert(fiftyPercent.toFixed(2));
+                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + fiftyPercent.toFixed(2));
                 break;
             case 5:
                 let freePercent = (total * (1-1));
-                alert(freePercent.toFixed(2));
+                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + freePercent.toFixed(2));
                 break;
             default:
                 let noLuck = (total);
-                alert(noLuck.toFixed(2));
+                alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + noLuck.toFixed(2));
                 break;
         }
     }
-    console.log(calculateTotal(random_luckyNumber, random_total));
+
+ // testing calculateTotal function with two random generated numbers
+    console.log(calculateTotal());
 
 
     /**
@@ -133,7 +136,7 @@
      *
      * Test your function by passing it various values and checking for the expected
      * return value.
-     */
+
 
     /**
      * TODO:
