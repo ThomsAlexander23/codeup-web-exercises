@@ -70,7 +70,7 @@
 
 // Exercise CalculateTotal: function passes two parameters to receive a lottery discount on purchase
 
-    var total_bill = parseFloat(prompt("Enter bill here"));
+    var total_bill = Number (prompt("Enter bill here"));
     function calculateTotal(luckyNumber = ((Math.floor(Math.random() * 5)+1)), total =  ((Math.floor(Math.random() * 1000) + 1))) {
         //when total_bill is not a valid bill amount; a random bill amount is generated
         if (total_bill <= 0){
@@ -144,7 +144,7 @@
     function threePrompts(){
         var numConfirm = confirm("Would you like to enter a number, to see three results?");
         if (numConfirm === true) {
-            var userNum = parseFloat(prompt("Enter a number"));
+            var userNum = Number (prompt("Enter a number"));
             var evenOdd = ((userNum % 2) === 1) ? "Odd" : "Even";
             var posNeg = (userNum <= 0) ? "Negative" : "Positive";
             var plus100 = (userNum + 100);

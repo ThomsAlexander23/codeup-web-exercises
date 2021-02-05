@@ -22,7 +22,7 @@
     var random = Math.floor((Math.random() * 3) + 1);
 
 // var number from user and function created
-    var number = parseFloat(prompt("Enter the number two to win!"));
+    var number = Number (prompt("Enter the number two to win!"));
 
     function isTwo(x) {
         return (number === 2)
@@ -35,8 +35,8 @@
 
 
 // tip calculator function taking input from user and returns tip amount
-    var bill = parseFloat(prompt("How much was your bill"));
-    var tip = parseFloat(prompt("Enter tip percentage (example .15 = 15%"));
+    var bill = Number (prompt("How much was your bill"));
+    var tip = Number (prompt("Enter tip percentage (example .15 = 15%"));
 
     function calculateTip(bill, tip) {
         return (bill.toFixed(2) * tip.toFixed(2));
@@ -46,8 +46,8 @@
     console.log(calculateTip(bill, tip));
 
 // added alert to function calculateTip and renamed so as to not interfere with the other
-    var bill2 = parseFloat(prompt("How much was your bill"));
-    var tip2 = parseFloat(prompt("Enter tip percentage (example .15 = 15%"));
+    var bill2 = Number (prompt("How much was your bill"));
+    var tip2 = Number (prompt("Enter tip percentage (example .15 = 15%"));
 
     function calculateTip2(bill2, tip2) {
         alert("You want to tip: $" + (bill2.toFixed(2) * tip2.toFixed(2)));
@@ -59,8 +59,8 @@
 
 
 // user inputs price and discount var, created applyDiscount function
-    var price = parseFloat(prompt("What price is the object"));
-    var discount = parseFloat(prompt("Discount percentage (example: .15 = 15%"));
+    var price = Number (prompt("What price is the object"));
+    var discount = Number (prompt("Discount percentage (example: .15 = 15%"));
 
     function applyDiscount(price) {
         discount = 1 - discount;
