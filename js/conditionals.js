@@ -153,7 +153,7 @@
             alert(posNeg);
         }
         else {
-            alert("Sorry we wasted your time.")
+            alert("Sorry, we wasted your time.")
         }
     }
 // test for function behavior
