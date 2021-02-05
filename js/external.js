@@ -4,7 +4,7 @@
 alert("Welcome to my Website!");
 
 // does user favorite color match mine!
-var favorite_color = prompt("what is the best color in the whole wide world?");
+var favorite_color = prompt("What is the best color in the whole wide world?");
   if (favorite_color === "blue") {
     alert(favorite_color + " is the correct answer and is the best color in the whole wide world!!")
   }
@@ -13,21 +13,21 @@ var favorite_color = prompt("what is the best color in the whole wide world?");
   };
 
 //exercise 3.1: movie rental
-var lil_mermaid = parseInt(prompt("how many nights did you rent The Little Mermaid?"));
-var bro_bear = parseInt(prompt("how many nights did you rent Brother Bear?"));
-var hercules = parseInt(prompt("how many nights did you rent Hercules"));
-var price = parseInt(prompt("what was the rental rate?"));
+var lil_mermaid = Number (prompt("How many nights did you rent The Little Mermaid?"));
+var bro_bear = Number (prompt("How many nights did you rent Brother Bear?"));
+var hercules = Number (prompt("How many nights did you rent Hercules"));
+var price = Number (prompt("What was the rental rate?"));
 
 var money_for_rental = alert("You owe $" + (price * (lil_mermaid + bro_bear + hercules)));
 
 //exercise 3.2: pay period!
 // gather pay info
-var facebook = parseInt(prompt("how many hours did you work at Facebook?"));
-var facebookPay = parseInt(prompt("what is your pay rate at Facebook"));
-var google = parseInt(prompt("how many hours did you work at Google?"));
-var googlePay = parseInt(prompt("what is your pay rate at Google"));
-var amazon = parseInt(prompt("how many hours did you work at Amazon?"));
-var amazonPay = parseInt(prompt("what is your pay rate at Amazon"));
+var facebook = Number (prompt("How many hours did you work at Facebook?"));
+var facebookPay = Number (prompt("What is your pay rate at Facebook"));
+var google = Number (prompt("How many hours did you work at Google?"));
+var googlePay = Number (prompt("What is your pay rate at Google"));
+var amazon = Number (prompt("How many hours did you work at Amazon?"));
+var amazonPay = Number (prompt("What is your pay rate at Amazon"));
 // each company total pay
 var fb_chk = facebook * facebookPay;
 var goog_chk = google * googlePay;
@@ -41,7 +41,7 @@ var total_pay = alert ("You worked " + total_hours + " and got paid $" + total_m
 
 //exercise 3.3: Course Schedule
 // student input
-var student_sched = prompt("how many credits do you have?");
+var student_sched = prompt("How many credits do you have?");
 // credit cutoff & random full or not boolean
 var class_space = Math.random();
 var cut_off = 14;
@@ -64,9 +64,9 @@ else {
 
 //exercise 3.4: Product Offer
 // user input and
-var member = confirm("are you a member?, OK for yes!");
-var cart = parseInt(prompt("how many items do you have in your cart?"));
-var original_price = parseInt(prompt( "what do is the cost of your item individually?"));
+var member = confirm("Are you a member?, OK for yes!");
+var cart = Number (prompt("How many items do you have in your cart?"));
+var original_price = Number (prompt( "What do is the cost of your item individually?"));
 var discount = .66;
 var offerValid = Math.random() < .5
 // calculations
@@ -80,7 +80,7 @@ if ((member === true) || (cart > 2)) {
     alert("This is your discounted price: $" + discount_price);
     alert("You saved: $" + savings );}
   else {
-    alert("offer is not valid, your total remains $" + price_total)
+    alert("Offer is not valid, your total remains $" + price_total)
   }  
 }
 else {
