@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    /* ##########################################################################*/
+//     /* ##########################################################################*/
 //defined function analyzeColor() to take myColor against an array that will be looped
 // through and return a statement about it
     function analyzeColor(x) {
@@ -60,7 +60,7 @@
                 alert("The Mediterranean is blue");
                 break;
             default:
-                alert("I do not know anything of this color");
+                alert(`I do not know anything of this color ${randomColor}`);
                 break;
         }
     }
@@ -69,67 +69,17 @@
     console.log(switch_colorAnalyzer_random(randomColor));
 
 // Exercise CalculateTotal: function passes two parameters to receive a lottery discount on purchase
-
+    var luckyDiscount = [0, .1, .25, .35, .5, 1];
     var total_bill = Number (prompt("Enter bill here"));
     function calculateTotal(luckyNumber = ((Math.floor(Math.random() * 5)+1)), total =  ((Math.floor(Math.random() * 1000) + 1))) {
         //when total_bill is not a valid bill amount; a random bill amount is generated
         if (total_bill <= 0){
-            switch (luckyNumber) {
-                case 1:
-                    let tenPercent = (total *(1- .1));
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + tenPercent.toFixed(2));
-                    break;
-                case 2:
-                    let quarterPercent = (total * (1-.25));
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + quarterPercent.toFixed(2));
-                    break;
-                case 3:
-                    let thirtyfivePercent = (total * (1-.35));
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + thirtyfivePercent.toFixed(2));
-                    break;
-                case 4:
-                    let fiftyPercent = (total * (1-.5));
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + fiftyPercent.toFixed(2));
-                    break;
-                case 5:
-                    let freePercent = (total * (1-1));
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + freePercent.toFixed(2));
-                    break;
-                default:
-                    let noLuck = (total);
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + noLuck.toFixed(2));
-                    break;
-            }
+            alert(total *(1 - luckyDiscount[luckyNumber]))
         }
         // when total_bill is valid amount function runs with total_bill as total value
         else {
             total = total_bill;
-            switch (luckyNumber) {
-                case 1:
-                    let tenPercent = (total *(1- .1));
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + tenPercent.toFixed(2));
-                    break;
-                case 2:
-                    let quarterPercent = (total * (1-.25));
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + quarterPercent.toFixed(2));
-                    break;
-                case 3:
-                    let thirtyfivePercent = (total * (1-.35));
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + thirtyfivePercent.toFixed(2));
-                    break;
-                case 4:
-                    let fiftyPercent = (total * (1-.5));
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + fiftyPercent.toFixed(2));
-                    break;
-                case 5:
-                    let freePercent = (total * (1-1));
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + freePercent.toFixed(2));
-                    break;
-                default:
-                    let noLuck = (total);
-                    alert("Lucky number " + luckyNumber + " and a total of $" + total + " results in a new total of $" + noLuck.toFixed(2));
-                    break;
-            }
+            alert(total *(1-luckyDiscount[luckyNumber]))
         }
     }
 
@@ -140,7 +90,7 @@
 // Generate a random number between 0 and 6
 // var luckyNumber = Math.floor(Math.random() * 6);
 
-// function that asks for user permission; then gives two possible scenarios; one involves number outputs the other apologizes
+//function that asks for user permission; then gives two possible scenarios; one involves number outputs the other apologizes
     function threePrompts(){
         var numConfirm = confirm("Would you like to enter a number, to see three results?");
         if (numConfirm === true) {
