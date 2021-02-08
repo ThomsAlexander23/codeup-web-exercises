@@ -95,12 +95,17 @@
         var numConfirm = confirm("Would you like to enter a number, to see three results?");
         if (numConfirm === true) {
             var userNum = Number (prompt("Enter a number"));
-            var evenOdd = ((userNum % 2) === 1) ? "Odd" : "Even";
-            var posNeg = (userNum <= 0) ? "Negative" : "Positive";
-            var plus100 = (userNum + 100);
-            alert(evenOdd);
-            alert(plus100);
-            alert(posNeg);
+            if (userNum === typeof(number)){
+                var evenOdd = ((userNum % 2) === 1) ? "Odd" : "Even";
+                var posNeg = (userNum <= 0) ? "Negative" : "Positive";
+                var plus100 = (userNum + 100);
+                alert(evenOdd);
+                alert(plus100);
+                alert(posNeg);
+            }
+            else {
+                alert("Invalid Input!")
+            }
         }
         else {
             alert("Sorry, we wasted your time.")
