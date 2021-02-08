@@ -18,9 +18,9 @@
         alert(colorComment);
         return (colorComment);
     }
+// test for function behavior of analyzeColor
+    console.log(analyzeColor());
 
-// // test for function behavior of analyzeColor
-     console.log(analyzeColor());
 
 
 // Don't change the next two lines!
@@ -37,41 +37,41 @@
     function analyzeColor_random() {
         analyzeColor(randomColor);
     }
-
 // test for function behavior of analyzeColor with a random color
     console.log(analyzeColor_random());
+
 
 // switch function for colorAnalyzer_random passing randomColor
     function switch_colorAnalyzer_random(randomColor) {
         switch (randomColor) {
             case "red":
-                alert("Cherries are red");
+                alert(`Cherries are ${randomColor}`);
                 break;
             case "orange":
-                alert("Oranges are orange");
+                alert(`Oranges are ${randomColor}`);
                 break;
             case "yellow":
-                alert("Sunflowers are yellow");
+                alert(`Sunflowers are ${randomColor}`);
                 break;
             case "green":
-                alert("Cannabis is green");
+                alert(`Cannabis is ${randomColor}`);
                 break;
             case "blue":
-                alert("The Mediterranean is blue");
+                alert(`The Mediterranean is ${randomColor}`);
                 break;
             default:
                 alert(`I do not know anything of this color ${randomColor}`);
                 break;
         }
     }
-
-// testing for correct switch behavior
+    // testing for correct switch behavior
     console.log(switch_colorAnalyzer_random(randomColor));
+
 
 // Exercise CalculateTotal: function passes two parameters to receive a lottery discount on purchase
     var luckyDiscount = [0, .1, .25, .35, .5, 1];
     var total_bill = Number (prompt("Enter bill here"));
-    function calculateTotal(luckyNumber = ((Math.floor(Math.random() * 5)+1)), total =  ((Math.floor(Math.random() * 1000) + 1))) {
+    function calculateTotal(luckyNumber = (Math.floor(Math.random() * 6)), total =  (Math.floor(Math.random() * 1001))) {
         //when total_bill is not a valid bill amount; a random bill amount is generated
         if (total_bill <= 0){
             alert(total *(1 - luckyDiscount[luckyNumber]))
