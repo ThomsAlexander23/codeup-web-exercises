@@ -31,7 +31,7 @@
   //     randomNumber(depth -1);
   //   }
   // } 
-
+     
   // exercise 4 half pyramid
   for (let i = 1; i < 10; i++)
     switch (i){
@@ -62,6 +62,15 @@
       case 9:
         console.log(i + "99999999");
         break;
+    }
+
+// Exercise 4: refactored!!
+  var factor = "1";
+  for (let i = 1; i < 10; i++)
+    if (i < 10){
+    var multiplier = Number(factor);
+    console.log(i * multiplier);
+    factor = (factor + "1");
     }
 
 
