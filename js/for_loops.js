@@ -73,5 +73,8 @@
     factor = (factor + "1");
     }
 
+// exercise 5: for loop 100 to 5 decrementing by 5
+  for (let i = 100; i >= 5; i = i-5)
+    console.log(i);
 
 })();
