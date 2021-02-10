@@ -32,6 +32,37 @@
   //   }
   // } 
 
+  // exercise 4 half pyramid
+  for (let i = 1; i < 10; i++)
+    switch (i){
+      case 1:
+        console.log(i);
+        break;
+      case 2:
+        console.log(i + "2");
+        break;
+      case 3:
+        console.log(i + "33");
+        break;
+      case 4:
+        console.log(i + "444");
+        break;
+      case 5:
+        console.log(i + "5555");
+        break;
+      case 6:
+        console.log(i + "66666");
+        break;
+      case 7:
+        console.log(i + "777777");
+        break;
+      case 8:
+        console.log(i + "8888888");
+        break;
+      case 9:
+        console.log(i + "99999999");
+        break;
+    }
 
 
 })();
