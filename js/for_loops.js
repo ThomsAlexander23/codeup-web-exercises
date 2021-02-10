@@ -5,14 +5,20 @@
       console.log(`${number} x ${i} = ${number * i}`);
   }
 
-  function tenRandomNumber(min,max){
-    for (let i = 0; i <= 10; i++)
-      var randomNumber = ((Math.floor(Math.random() * (200-20) + 20)));
-      if (randomNumber % 2 === 0){
-        console.log(`${randomNumber} is even`);
-      }
-      else {
-        console.log(`${randomNumber} is odd`);
-      }
-  } 
+// recursive function for this loop exercise
+  // function randomNumber(depth){
+  //   if (depth >= 0) {
+  //     var number = (((Math.floor(Math.random() * (200-20) + 20))));
+  //     if (((number) % 2) === 0){
+  //       console.log(`${number} is even`);
+  //     }
+  //     else {
+  //       console.log(`${number} is odd`);
+  //     }
+  //     randomNumber(depth -1);
+  //   }
+  // } 
+
+  
+
 })();
