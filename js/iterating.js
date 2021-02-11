@@ -21,20 +21,19 @@
         console.log(name)
     });    
 
+    // function to find first index in array and log to console
+    function firstItem(array){
+        console.log(array[0]);
+    }
+
+    // function to second index in array and log to console
+    function secondItem(array){
+        console.log(array[1]);
+    }
+
+    // function to find last index in array and log to console
+    function lastItem(array){
+        console.log(array[(array.length -1)]);
+    }
     
-
-    /**
-     * TODO:
-     * Create the following three functions, each will accept an array and
-     * return an an element from it
-     * - first: returns the first item in the array
-     * - second: returns the second item in the array
-     * - last: returns the last item in the array
-     *
-     * Example:
-     *  > first([1, 2, 3, 4, 5]) // returns 1
-     *  > second([1, 2, 3, 4, 5]) // returns 2
-     *  > last([1, 2, 3, 4, 5]) // return 5
-     */
-
 })();
