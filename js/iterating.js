@@ -16,16 +16,12 @@
     for (let i = 0; i < names.length; i++)
         console.log(names[i]);
 
-    /**
-     * TODO:
-     * Write some code that uses a for loop to log every item in the names
-     * array.
-     */
+    // forEach to print values from array names
+    names.forEach(name => {
+        console.log(name)
+    });    
 
-    /**
-     * TODO:
-     * Refactor your above code to use a `forEach` loop
-     */
+    
 
     /**
      * TODO:
