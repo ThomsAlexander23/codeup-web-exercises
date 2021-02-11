@@ -14,18 +14,13 @@
     // useful for creating lists or joining names together first and last
     planetsArray.join("<br>");
 
-
-
-    
-    /**
-     * TODO:
-     * Create a string with <br> tags between each planet. console.log() your
-     * results. Why might this be useful?
-     *
-     * BONUS:
-     * Create another string that would display your planets in an undordered
-     * list. You will need an opening AND closing <ul> tags around the entire
-     * string, and <li> tags around each planet.
-     */
+    // bonus:
+    // created new array with planets
+    // added <ul> opening & closeing tags to array
+    // join the array with <li>
+    var planetsArray2 = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
+    planetsArray2.unshift("<ul>");
+    planetsArray2.push("</ul>");
+    planetsArray2.join("<li>");
 
 })();
