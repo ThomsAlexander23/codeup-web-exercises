@@ -9,6 +9,14 @@
     planetsArray = planetsString.split("|");
     console.log(planetsArray);
 
+
+    // joined array with <br> tags
+    // useful for creating lists or joining names together first and last
+    planetsArray.join("<br>");
+
+
+
+    
     /**
      * TODO:
      * Create a string with <br> tags between each planet. console.log() your
