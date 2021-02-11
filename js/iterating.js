@@ -12,6 +12,10 @@
     console.log(names[2]);
     console.log(names[3]);
 
+    // for loop to print values from array names
+    for (let i = 0; i < names.length; i++)
+        console.log(names[i]);
+
     /**
      * TODO:
      * Write some code that uses a for loop to log every item in the names
