@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    // new object person with 2 attributes, firstName & lastName
+    // new object person with 2 properties, firstName & lastName
     // logged object to console using .notation
     var person = {};
     person.firstName = 'Alexander';
@@ -9,6 +9,12 @@
     console.log(person.firstName);
     console.log(person.lastName);
 
+    // method added to person that displays a message saying hello from the properties first and last
+    // logged the new method for functionality
+    person.sayHello = function sayHello(){
+        console.log(`Hello from ${person.firstName} ${person.lastName}`);
+    }
+    console.log(person.sayHello());
     /**
      * TODO:
      * Add a sayHello method to the person object that returns a greeting using
