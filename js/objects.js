@@ -51,6 +51,19 @@
         
     });
 
+    // book array house book objects that contain title, author.firstName, and author.lastName
+    // logged to console to ensure books is set up correctly and can be called correctly
+    var books = [
+        {title: "The Paper Game",author:{firstName: "Mike", lastName: "Rockefeller"}},
+        {title: "The Creators Game",author:{firstName: "Seneca",lastName:"Algonquin"}},
+        {title: "Coding for DnD", author:{firstName: "Kenneth",lastName: "Howell"}},
+        {title: "DOOGLES", author:{firstName: "Douglas",lastName: "Hirsch"}},
+        {title: "My Ukrainian Marriage", author:{firstName: "Vasya",lastName: "Rhaegar"}}
+    ];
+
+    console.log(books[0].title);
+    console.log(books[2].author.firstName);
+    console.log(books[4].author.lastName);
     /** TODO:
      * Create an array of objects that represent books and store it in a
      * variable named `books`. Each object should have a title and an author
