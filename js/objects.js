@@ -1,16 +1,13 @@
 (function() {
     "use strict";
 
-    /**
-     * TODO:
-     * Create an object with firstName and lastName properties that are strings
-     * with your first and last name. Store this object in a variable named
-     * `person`.
-     *
-     * Example:
-     *  > console.log(person.firstName) // "Rick"
-     *  > console.log(person.lastName) // "Sanchez"
-     */
+    // new object person with 2 attributes, firstName & lastName
+    // logged object to console using .notation
+    var person = {};
+    person.firstName = 'Alexander';
+    person.lastName = 'Thoms';
+    console.log(person.firstName);
+    console.log(person.lastName);
 
     /**
      * TODO:
