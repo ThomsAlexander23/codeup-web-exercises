@@ -48,8 +48,6 @@
     }
     shoppers.forEach(discount);
         
-        
-    });
 
     // book array house book objects that contain title, author.firstName, and author.lastName
     // logged to console to ensure books is set up correctly and can be called correctly
@@ -73,31 +71,18 @@
         console.log(`Author: ${books.author.firstName} ${books.author.lastName}`);
     }
     books.forEach(displayBookInfo);
-    /**
-     * TODO:
-     * Loop through the books array and output the following information about
-     * each book:
-     * - the book number (use the index of the book in the array)
-     * - the book title
-     * - author's full name (first name + last name)
-     *
-     * Example Console Output:
-     *
-     *      Book # 1
-     *      Title: The Salmon of Doubt
-     *      Author: Douglas Adams
-     *      ---
-     *      Book # 2
-     *      Title: Walkaway
-     *      Author: Cory Doctorow
-     *      ---
-     *      Book # 3
-     *      Title: A Brief History of Time
-     *      Author: Stephen Hawking
-     *      ---
-     *      ...
-     */
 
+    // createBook to get input from use to create new entry to array books
+    function createBook(title = prompt("enter title"),first = prompt("enter author first name"),last = prompt("enter author last name")){
+        book = {};
+        book.title = title;
+        book.author = {};
+        book.author.firstName = first;
+        book.author.lastName = last;
+        books.push(book);
+    }
+
+    
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
@@ -108,5 +93,20 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+    // var bookEntry = confirm("would you like to add a book?")
+    // while (bookEntry === false){
+    //     bookEntry = confirm("Would you like to add a book?")
+    // }
+
+    // if (bookEntry === true){
+    //     do{
+    //     createBook();
+    //     books.forEach(displayBookInfo);
+    //     var addAnother = confirm("Would you like to add another book?");}
+    //     while (addAnother === true)
+    // }
+    // else {
+    //     console.log("Thanks you for your entry!")
+    // }
 
 })();
