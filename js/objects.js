@@ -15,15 +15,7 @@
         console.log(`Hello from ${person.firstName} ${person.lastName}`);
     }
     console.log(person.sayHello());
-    /**
-     * TODO:
-     * Add a sayHello method to the person object that returns a greeting using
-     * the firstName and lastName properties.
-     * console.log the returned message to check your work
-     *
-     * Example
-     * > console.log(person.sayHello()) // "Hello from Rick Sanchez!"
-     */
+
 
     /** TODO:
      * HEB has an offer for the shoppers that buy products amounting to
@@ -38,12 +30,26 @@
      * represents one shopper. Use a foreach loop to iterate through the array,
      * and console.log the relevant messages for each person
      */
-
-    // var shoppers = [
-    //     {name: 'Cameron', amount: 180},
-    //     {name: 'Ryan', amount: 250},
-    //     {name: 'George', amount: 320}
-    // ];
+    // discount function created to display discount messages logged to the console for customers
+    // called discount in a forEach of array shoppers to display each customers information
+    var shoppers = [
+        {name: 'Cameron', amount: 180},
+        {name: 'Ryan', amount: 250},
+        {name: 'George', amount: 320}
+    ];
+    function discount(shoppers){
+        if (shoppers.amount >= 200){
+            var discountedPrice = (shoppers.amount * .88);
+            console.log(`${shoppers.name}: $${shoppers.amount}; discounted by 12% to $${discountedPrice}`);
+        }
+        else {
+            console.log(`${shoppers.name}: $${shoppers.amount} could not be applied with a discount`);
+        }
+    }
+    shoppers.forEach(discount);
+        
+        
+    });
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
