@@ -8,11 +8,12 @@
     for (let i = 0; i < 50; i++){
       if (i <= 2){
         fibonacciArray.push(i);
+        console.log(fibonacciArray[i]);
       } 
       else {
         fibonacciArray.push((fibonacciArray[i-1]) + (fibonacciArray[i-2]));
+        console.log(fibonacciArray[i]);
       }
-    }
-  console.log(fibonacciArray);
+    }  
   }
 })
