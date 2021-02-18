@@ -7,18 +7,12 @@
     var fibonacciArray = [];
     for (let i = 0; i < 50; i++){
       if (i <= 2){
-        fibonacci = {}
-        fibonacci.iteration = i;
-        fibonacci.value = i;
-        fibonacciArray.push(fibonacci);
+        fibonacciArray.push(i);
       } 
       else {
-        fibonacci = {}
-        fibonacci.iteration = i;
-        fibonacci.value = ((Number(fibonacciArray[i-1].value)) + (Number(fibonacciArray[i-2].value)));
-        fibonacciArray.push(fibonacci)
+        fibonacciArray.push((fibonacciArray[i-1]) + (fibonacciArray[i-2]));
+      }
     }
-  }
   console.log(fibonacciArray);
-}
+  }
 })
