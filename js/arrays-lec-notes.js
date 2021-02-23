@@ -134,6 +134,16 @@ console.log(returnLastElement(daysOfTheWeek)); //sunday
 *************************************************************** */
 //  TODO TOGETHER: Log each element of the shapes array
 // TODO TOGETHER: Using a for loop, iterate through the shapes array and log each shape
+var favoriteShape = shapes[2];
+for (let i =0; i < shapes.length; i++){
+  if (favoriteShape = shapes[i]){
+    console.log(favoriteShape);
+    alert(`${favoriteShape} is my favorite shape!`)
+  }
+  else{
+    console.log(shapes[i]);
+  }
+}
 
 
 
@@ -143,21 +153,43 @@ console.log(returnLastElement(daysOfTheWeek)); //sunday
 
 
 // TODO: What happens if we change var i = 1? or var i = 2;
+// ANSWER: The index starts further into the array, skipping those at indexes before the starting i.
+
+
 // TODO: What are benefits of using loops to iterate?
+// ANSWER: It is more efficient and quicker to iterate than to manually go through each index.
+
 // TODO: How does the loop know when to stop iterating?
+// ANSWER: It will stop when the condition is met, in arrays this is typically when the index becomes the length of the array (i < arr.length)
 
 
 // TODO: Using a for loop, iterate through the instructors array and console.log each instructor
-
+for (let i = 0; i < instructors.length; i++){
+  console.log(instructors[i]);
+}
 
 // TODO: Using a for loop, iterate through the daysOfTheWeek array and console.log each day of the week
-
+for (let i = 0; i < daysOfTheWeek.length; i++){
+  console.log(daysOfTheWeek[i]);
+}
 
 // TODO: Using a for loop, iterate through the favoriteFoods array and console.log each favorite food
-
+for (let i = 0; i < favoriteFoods.length; i++){
+  console.log(favoriteFoods[i]);
+}
 
 
 // TODO: Refactoring the instructor loop, alert "hey, I know <INSTRUCTOR NAME HERE>" if you have had class with that instructor. If you have not had class with that instructor, alert "I haven't had class with <INSTRUCTOR NAME HERE> yet!"
+for (let i = 0; i < instructors.length; i++){
+  if (instructors[i] === instructors[0] || instructors[1] || instructor[2]){
+    console.log(instructors[i]);
+    alert(`Hey, I know ${instructor[i]} if you have had class with that instructor!`)
+  }
+  else{
+    console.log(instructors[i]);
+    alert(`I haven't had class with ${instructor[i]} yet!`)
+  }
+}
 
 
 
@@ -166,11 +198,15 @@ console.log(returnLastElement(daysOfTheWeek)); //sunday
 *************************************************************** */
 
 // TODO TOGETHER: Using a for each loop, console.log each shape from the shapes array
-
+shapes.forEach(shape => {
+  console.log(shape);
+});
 
 
 // TODO TOGETHER: Using a for each loop, console.log each element from the following array: var pies = ["apple", "cherry", "key lime", "huckleberry"];
-
+pies.forEach(pie => {
+  console.log(pie);
+});
 
 
 // TODO: Using a for each loop, iterate through the instructors array and console.log each instructor
