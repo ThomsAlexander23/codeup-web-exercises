@@ -210,11 +210,18 @@ pies.forEach(pie => {
 
 
 // TODO: Using a for each loop, iterate through the instructors array and console.log each instructor
-
+instructors.forEach(instructor => {
+  console.log(instructor);
+});
 
 
 // TODO: Using a for each loop, iterate through the daysOfTheWeek array and console.log each day of the week
-
+daysOfTheWeek.forEach(dayOfTheWeek => {
+  console.log(dayOfTheWeek);
+});
 
 
 // TODO: Using a for each loop, iterate through the favoriteFoods array and console.log each favorite food
+favoriteFoods.forEach(favoriteFood => {
+  console.log(favoriteFood);
+});
