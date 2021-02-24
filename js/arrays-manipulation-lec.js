@@ -195,20 +195,23 @@ console.log(namesString);
 //        2305552020
 //        5125553030
 // */
-
+var myArray = []
 var phoneNumbers = '210-555-2020\n230-555-2020\n512-555-3030';
-//console.log(phoneNumbers.join(" "))
-//function cleanPhoneNumbers(phoneNums) {
-    //phoneNums.join()
-    
-//}
-//cleanPhoneNumbers(phoneNumbers)
+function cleanPhoneNumbers(phoneNumbers){
+    phoneNumbers = phoneNumbers.split("\n")
+    for (let i = 0 ; i < phoneNumbers.length; i++){
+        phoneNumbers[i] = phoneNumbers[i].split("-")
+        phoneNumbers[i] = phoneNumbers[i].join('')
+        myArray.push(phoneNumbers[i])
+    }
+}
+cleanPhoneNumbers(phoneNumbers)
+console.log(myArray)
 
-//var cleanNumsArr = cleanPhoneNumbers(phoneNumbers);
+ for (var i = 0; i < myArray.length; i += 1) {
+     console.log(myArray[i]);
+ } 
 
-// for (var i = 0; i < cleanNumsArr.length; i += 1) {
-//     console.log(cleanNumsArr[i]);
-// }
 
 
 
