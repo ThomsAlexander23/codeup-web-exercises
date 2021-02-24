@@ -19,12 +19,13 @@
     // added <ul> opening & closeing tags to array
     // join the array with <li>
     var planetsArray2 = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
-    for (let i = 0;i < planetsArray.length; i++){
+    for (let i = 0;i < planetsArray2.length; i++){
         planetsArray2[i] = planetsArray2[i] + ("</li>")
         planetsArray2[i] = ("<li>") + planetsArray2[i]
     }
     planetsArray2.unshift("<ul>")
     planetsArray2.push("</ul>")
+    planetsArray2 = planetsArray2.join('')
     console.log(planetsArray2)
 
 })();
