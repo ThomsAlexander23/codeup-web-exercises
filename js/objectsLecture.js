@@ -60,20 +60,20 @@ var myCar = {}
 
 // We can use dot notation to do so:
 
-// myCar.make = "Chevrolet";
+myCar.make = "Chevrolet";
 
 // Or array notation:
 
-// myCar["model"] = "Silverado";
+myCar["model"] = "Silverado";
 
 //In general, dot notation is preferred of the two notations
 
 //We can also set up our objects and properties during object creation
-// var sigotherCar = {
-//     make: "Honda",
-//     model: "Fit",
-//     year: 2010
-// }
+var sigotherCar = {
+    make: "Honda",
+    model: "Fit",
+    year: 2010
+}
 
 
 // TODO: Fill in your myCar object with properties of make, model, and year with the correct values. If you don't own a vehicle, fill in the details with your favorite vehicle.
