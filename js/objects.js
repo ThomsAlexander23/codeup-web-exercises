@@ -16,22 +16,10 @@
     }
     console.log(person.sayHello());
 
-
-    /** TODO:
-     * HEB has an offer for the shoppers that buy products amounting to
-     * more than $200. If a shopper spends more than $200, they get a 12%
-     * discount. Write a JS program, using conditionals, that logs to the
-     * browser, how much Ryan, Cameron and George need to pay. We know that
-     * Cameron bought $180, Ryan $250 and George $320. Your program will have to
-     * display a line with the name of the person, the amount before the
-     * discount, the discount, if any, and the amount after the discount.
-     *
-     * Uncomment the lines below to create an array of objects where each object
-     * represents one shopper. Use a foreach loop to iterate through the array,
-     * and console.log the relevant messages for each person
-     */
-    // discount function created to display discount messages logged to the console for customers
-    // called discount in a forEach of array shoppers to display each customers information
+    // shoppers uncommented
+    // function discount passed with shoppers
+    // discount displays shopper name and total and when applicable a discount from total
+    // forEach added to loop through object shoppers
     var shoppers = [
         {name: 'Cameron', amount: 180},
         {name: 'Ryan', amount: 250},
@@ -59,10 +47,6 @@
         {title: "My Ukrainian Marriage", author:{firstName: "Vasya",lastName: "Rhaegar"}}
     ];
 
-    // console.log(books[0].title);
-    // console.log(books[2].author.firstName);
-    // console.log(books[4].author.lastName);
-
     // displayBookInfo is passed books and i to output to console book index+1 title and author to new lines
     //for each is used to loop through array books with the displayBookInfo function
     function displayBookInfo(books,i){
@@ -72,41 +56,30 @@
     }
     books.forEach(displayBookInfo);
 
-    // createBook to get input from use to create new entry to array books
-    function createBook(title = prompt("enter title"),first = prompt("enter author first name"),last = prompt("enter author last name")){
-        book = {};
+    // createBook to get input from user to create new entry to array books
+    function createBook(title, first, last){
+        var book = {};
         book.title = title;
         book.author = {};
         book.author.firstName = first;
         book.author.lastName = last;
-        books.push(book);
+        return book
     }
 
+    books.push(createBook("WindyWagon", "louis", "sue"));
+    console.log(books)
     
-    /**
-     * Bonus:
-     * - Create a function named `createBook` that accepts a title and author
-     *   name and returns a book object with the properties described
-     *   previously. Refactor your code that creates the books array to instead
-     *   use your function.
-     * - Create a function named `showBookInfo` that accepts a book object and
-     *   outputs the information described above. Refactor your loop to use your
-     *   `showBookInfo` function.
-     */
-    // var bookEntry = confirm("would you like to add a book?")
-    // while (bookEntry === false){
-    //     bookEntry = confirm("Would you like to add a book?")
-    // }
+    //function to display book in a format that doesnt use indexing
+    // showBookInfo displays book values
+    function showBookInfo(book){
+        console.log(`Book Title: ${book.title}.`) 
+        console.log(`Written by: ${book.author.firstName} ${book.author.lastName}`)
+    };
 
-    // if (bookEntry === true){
-    //     do{
-    //     createBook();
-    //     books.forEach(displayBookInfo);
-    //     var addAnother = confirm("Would you like to add another book?");}
-    //     while (addAnother === true)
-    // }
-    // else {
-    //     console.log("Thanks you for your entry!")
-    // }
+    // forEach used to access and display all book objects & properties  currently in books
+    books.forEach(showBookInfo);
+    
+    // proof for fun that showBookInfo function can accept createBook to display the created book before pushing to books
+    books.push(showBookInfo(createBook("Boats N' Hoes", "Dale", "Doback")));
 
 })();
