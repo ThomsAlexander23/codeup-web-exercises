@@ -32,18 +32,18 @@ console.log(myDog);
 
 // We can call the 'constructor' for an object and use it to create our objects:
 
-// var myObject = new Object();
+var myObject = new Object();
 
-// console.log(myObject);
+console.log(myObject);
 
 //More often, we'll use this object literal notation structure as shown above and below:
 
-// var myObject = {};
-//
-// console.log(typeof myObject);
+var myObject = {};
+
+console.log(typeof myObject);
 
 //* TODO: Create a new Object and call it 'myCar' using either way to do so shown above (object instance or object literal)
-
+var myCar = {}
 
 
 // That's great! But our car object doesn't have much going on, does it? There's no depth or meat to it - how can we fill our object in?
