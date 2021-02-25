@@ -6,21 +6,21 @@
 
 //Let's set up an object and .log it to see what we're looking at:
 
-// var myCounty = {
-//     name: "Bexar", //name: key ; value: "Bexar"
-//     countySeat: "San Antonio",
-//     currentPop: 2003554
-// }
+var myCounty = {
+    name: "Bexar", //name: key ; value: "Bexar"
+    countySeat: "San Antonio",
+    currentPop: 2003554
+}
 
-// var myDog = {
-//     name: "Fenix",
-//     age: 11,
-//     breed: "Pembroke Welsh Corgi"
-// }
+var myDog = {
+    name: "Fenix",
+    age: 11,
+    breed: "Pembroke Welsh Corgi"
+}
 
-// console.log(myCounty);
+console.log(myCounty);
 
-// console.log(myDog);
+console.log(myDog);
 
 //.log-ing the above gets us the object 'printed' or 'viewed' in the console where we can click into the object to see its shape [properties]
 
