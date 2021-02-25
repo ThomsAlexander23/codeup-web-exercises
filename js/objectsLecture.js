@@ -44,6 +44,11 @@ console.log(typeof myObject);
 
 //* TODO: Create a new Object and call it 'myCar' using either way to do so shown above (object instance or object literal)
 var myCar = {}
+var myVan = {
+  "make": Mercedes-Benz,
+  "model": Sprinter2500,
+  "year": 2016
+}
 
 
 // That's great! But our car object doesn't have much going on, does it? There's no depth or meat to it - how can we fill our object in?
@@ -80,7 +85,7 @@ var sigotherCar = {
 
 //For me? I'm missing the year for myCar so. .
 
-// myCar.year = 2017;
+myCar.year = 2017;
 
 //Now I have a completed example of the myCar object - the model and make were added above in prior examples
 
