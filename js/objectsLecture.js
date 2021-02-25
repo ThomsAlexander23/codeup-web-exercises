@@ -108,19 +108,23 @@ myCar.year = 2017;
 
 //Speaking of variables, we can tap into our prior understanding of assigning variables thus far and assign a property to a variable:
 
-// var myCarYear = myCar.year;
-
-// console.log("Woops - forgot to tell you what year my vehicle is, it's model year " + myCarYear)
+ var myCarYear = myCar.year;
+ var myVanYear = myVan.year
+ console.log("Woops - forgot to tell you what year my vehicle is, it's model year is " + myCarYear)
+ console.log("Woops - forgot to tell you what year my vehicle is, it's model year is " + myVanYear)
 
 //What if we wanted to create a more complicated piece of data? Perhaps a list of our cars FEATURES?
 
-// myCar.features = ["Heated/ventilated seats", "leather", "towing package", "bed liner"]
-
+ myCar.features = ["Heated/ventilated seats", "leather", "towing package", "bed liner"]
+myVan.features = ["Bed", "running water", "shower", "infloor heating", "solar", "roof rack"]
 
 //Now we could do something like this. . a list of those features in the console
-// for (let i = 0; i < myCar.features.length; i++){
-//     console.log("Here's one of my car's features: " + myCar.features[i])
-// }
+ for (let i = 0; i < myCar.features.length; i++){
+     console.log("Here's one of my car's features: " + myCar.features[i])
+ }
+ myVan.features.forEach(feature => {
+   console.log(`Here is just some of my car features: ${feature}`)
+ });
 
 // TODO: Add an array of features that your vehicle has!
 
