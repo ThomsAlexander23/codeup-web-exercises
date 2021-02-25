@@ -45,9 +45,9 @@ console.log(typeof myObject);
 //* TODO: Create a new Object and call it 'myCar' using either way to do so shown above (object instance or object literal)
 var myCar = {}
 var myVan = {
-  "make": Mercedes-Benz,
-  "model": Sprinter2500,
-  "year": 2016
+  make: "Mercedes-Benz",
+  model: "Sprinter2500",
+  year: 2016
 }
 
 
@@ -102,7 +102,9 @@ myCar.year = 2017;
 //We can use dot notation or array notation in similar ways to start accessing these properties
 //Let's share some information about our cars :)
 
-// console.log("Hey, y'all! I own a " + myCar["make"] + " " + myCar.model) //Should concat from these two properties into this structure like we've been used to doing with variables
+ console.log("Hey, y'all! I own a " + myCar["make"] + " " + myCar.model)
+ console.log(`Hey, look at my new to me ${myVan.make} ${myVan.model} `)
+ //Should concat from these two properties into this structure like we've been used to doing with variables
 
 //Speaking of variables, we can tap into our prior understanding of assigning variables thus far and assign a property to a variable:
 
