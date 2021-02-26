@@ -54,20 +54,24 @@
         console.log(`Book # ${i+1}`);
         console.log(`Title: ${books.title}`);
         console.log(`Author: ${books.author.firstName} ${books.author.lastName}`);
+        console.log("---")
     }
     books.forEach(displayBookInfo);
 
     // createBook to get input from user to create new entry to array books
-    function createBook(title, first, last){
-        var book = {};
-        book.title = title;
-        book.author = {};
-        book.author.firstName = first;
-        book.author.lastName = last;
+    function createBook(title, name){
+        var nameArray = name.split(' ')
+        var book = {
+            title: title,
+            author: {
+                firstName: nameArray[0],
+                lastName:  nameArray[1]
+            }
+        };
         return book
     }
 
-    books.push(createBook("WindyWagon", "louis", "sue"));
+    books.push(createBook("WindyWagon", "louis sue"));
     console.log(books)
     
     //function to display book in a format that doesnt use indexing
@@ -81,6 +85,6 @@
     books.forEach(showBookInfo);
     
     // proof for fun that showBookInfo function can accept createBook to display the created book before pushing to books
-    books.push(showBookInfo(createBook("Boats N' Hoes", "Dale", "Doback")));
+    books.push(showBookInfo(createBook("Boats N' Hoes", "Dale Doback")));
 
 })();
