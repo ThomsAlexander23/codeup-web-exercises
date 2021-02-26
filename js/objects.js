@@ -11,9 +11,10 @@
 
     // method added to person that displays a message saying hello from the properties first and last
     // logged the new method for functionality
-    person.sayHello = function sayHello(){
-        console.log(`Hello from ${person.firstName} ${person.lastName}`);
+    var greeting = function (){
+        console.log(`Hello from ${this.firstName} ${this.lastName}`);
     }
+    person.sayHello = greeting
     console.log(person.sayHello());
 
     // shoppers uncommented
