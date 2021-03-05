@@ -1,4 +1,71 @@
+
+
+body {
+  background-image: url(../img/welcomePage.jpg);
+  background-color: blanchedalmond;
+  color: cornflowerblue;
+  font-family: 'Montserrat', sans-serif;
+}
+  
+li {
+  list-style:georgian;
+  position: relative;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: "Josefin Sans", sans-serif;
+  color: orange;
+  text-decoration: underline;
+}
+
 .fancy-header {
   color: crimson;
   text-decoration: underline;
+  text-align: center;
+}
+
+img {
+  padding:10px;
+  margin: 10px;
+}
+
+#vision{
+  text-align: center;
+  font-size: 50px;
+  text-decoration: underline;
+  padding:0;
+  margin:0;
+}
+
+#products{
+  text-align: center;
+}
+
+th {
+  color: cyan;
+  font-size: 2rem
+}
+
+.process {
+  padding-left: 40%;
+}
+
+.goals {
+  padding-left: 70%;
+}
+
+.values {
+  padding-left: 10%
+}
+
+.row>*{
+  text-align: center;
+  color: brown;
+  padding: 50px;
+  border-style: solid;
+  border: 20 20 20 20;
+  border-color: lightslategray;
+}
+.row>.price{
+  border-style: hidden ;
 }

@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Hello, World</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
@@ -12,7 +14,8 @@
         <hr>
     </header>
     <main>
-      <section><h3>Core Values</h3>
+      <section class="values">
+        <h3>Core Values</h3>
         <ul>
           <li>Competence</li>
           <li>Involvement</li>
@@ -20,7 +23,7 @@
         </ul>
       </section>
       <br>
-      <section>
+      <section class="process">
         <h3>Our Process</h3>
         <ol>
           <li>Plan</li>
@@ -29,7 +32,7 @@
         </ol>
       </section>
         <br>
-      <section>
+      <section class="goals">
         <h3>2020 Vision</h3>
         <ul>
           <li>Become #1 in Technology</li>
@@ -39,35 +42,36 @@
       </section>
         <hr>
       <section>
-          <h3>Company Vision</h3>
           <p>
-            <img src= "img/veridianOne.jpg" width= 300px heigth= 350px>
-            <img src="img/veridianTwo.jpg" width= 300px heigth= 350px>
+            <img src= "img/veridianOne.jpg" width= 40% heigth= 40%>
+            <img src="img/veridianTwo.jpg" width= 40% heigth= 40%>
             <br>
-            <img src= "img/verididanThree.jpg" width= 300px heigth= 350px>
-            <img src= "img/verididanFour.jpg" width= 300px heigth= 350px>
+            <h3 id="vision">Company Vision</h3>
+            <br>
+            <img src= "img/verididanThree.jpg" width= 40% heigth= 40%>
+            <img src= "img/verididanFour.jpg" width= 40% heigth= 40%>
           </p>
           <br>
-        <h3>Our Product</h3>
-          <table>
-            <tr>
+        <h3 id="products">Our Product</h3>
+          <table class="table">
+            <tr class="row">
               <th>Plan</th>
-              <th>Price</th>
+              <th class="price">Price</th>
               <th>Features</th>
             </tr>
-            <tr>
+            <tr class="row">
               <td>Starter</td>
-              <td>$99</td>
+              <td class= "price">$99</td>
               <td>Base Technology</td>
             </tr>
-            <tr>
+            <tr class="row">
               <td>Advanced</td>
-              <td>$199</td>
+              <td class= "price">$199</td>
               <td>Additional Features</td>
             </tr>
-            <tr>
+            <tr class="row">
               <td>Premium</td>
-              <td>$499</td>
+              <td class= "price">$499</td>
               <td>Unlimited Support</td>
             </tr>
           </table>
