@@ -8,7 +8,7 @@ body {
 }
   
 li {
-  list-style:georgian;
+  list-style-type: disk;
   position: relative;
 }
 
@@ -25,13 +25,14 @@ h1, h2, h3, h4, h5, h6{
 }
 
 img {
-  padding:10px;
-  margin: 10px;
+  border-radius: 25%;
+  padding-left: auto;
+  margin-left: 80px;
 }
 
 #vision{
   text-align: center;
-  font-size: 50px;
+  font-size: 35px;
   text-decoration: underline;
   padding:0;
   margin:0;
@@ -47,25 +48,32 @@ th {
 }
 
 .process {
+  margin: auto;
   padding-left: 40%;
 }
 
 .goals {
+  margin: auto;
   padding-left: 70%;
 }
 
 .values {
+  margin: auto;
   padding-left: 10%
 }
 
-.row>*{
+.row{
   text-align: center;
   color: brown;
-  padding: 50px;
+  padding: auto;
   border-style: solid;
   border: 20 20 20 20;
-  border-color: lightslategray;
+  border-color: orange;
 }
 .row>.price{
-  border-style: hidden ;
+  padding: 2rem 15rem;
+}
+
+tr:nth-of-type(td){
+  border-style: double;
 }
