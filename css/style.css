@@ -77,3 +77,19 @@ th {
 tr:nth-of-type(td){
   border-style: double;
 }
+
+a:hover{
+  color: cyan;
+}
+
+a:link{
+  color: orange;
+}
+
+a:visited{
+  color: orange
+}
+
+a{
+  color:cyan
+}
