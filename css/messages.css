@@ -5,3 +5,28 @@ body, html {
   margin: 0;
   font-family: Arial, Ubuntu, sans-serif;
 }
+
+.warning, .success, .info, .error {
+  color: rgb(194, 191, 42);
+  background-color: rgb(235, 235, 131);
+  width: 95%;
+  margin: .5em auto;
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+
+.success {
+  background-color: rgb(170, 230, 170);
+  color: rgb(62, 172, 59);
+}
+
+.info {
+  background-color: rgb(169, 192, 236);
+  color: rgb(42, 50, 168)
+}
+
+.error {
+  background-color: rgba(228, 148, 148, 0.801);
+  color: rgb(136, 21, 21);
+}
