@@ -114,29 +114,23 @@ a {
 
 .profile-details {
   float: left;
-  width: calc(25% - .5em);
+  width: calc(25% - 1em);
   padding: 0;
-  margin: 0;
-  margin-right: .25em;
-  margin-left: .25em;
+  margin: 0 .5em;
 }
 
 .timeline {
   float: left;
-  width: calc(50% - .5em);
+  width: calc(50% - 1em);
   padding: 0;
-  margin: 0;
-  margin-right: .25em;
-  margin-left: .25em;
+  margin: 0 .5em;
 }
 
 .who-to-follow {
   float: right;
-  width: calc(25% - .5em);
+  width: calc(25% - 1em);
   padding: 0;
-  margin: 0;
-  margin-right: .25em;
-  margin-left: .25em;
+  margin: .5em
 }
 
 .container {
