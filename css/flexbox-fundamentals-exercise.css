@@ -35,29 +35,24 @@ h2, h3 {
     margin: 0 auto;
     display: flex;
     flex-flow:column wrap;
-    align-items: flex-start;
-    /* enter needed declarations here */
+    justify-content: space-around;
 }
 
 section {
-    width: 100%;
     display: flex;
     flex-flow:row wrap;
     justify-content: space-around;
     align-items: stretch;
-    margin-top: 1em;
 }
 
 section:nth-of-type(1) {
     height: 3em;
     background: lightgreen;
-    display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 section:nth-of-type(1) div:last-child {
-    display: flex;
     align-self: flex-start;
 }
 
@@ -68,12 +63,10 @@ section:nth-of-type(1) div:last-child {
 }
 
 .purple-box:nth-of-type(1) {
-    display: flex;
     flex-grow: 3;
 }
 
 .purple-box:nth-of-type(2) {
-    display: flex;
     flex-grow: 2
 }
 
@@ -85,17 +78,13 @@ section:nth-of-type(1) div:last-child {
 }
 
 section:nth-of-type(3) {
-    display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    
 }
 
 section:nth-of-type(3) h3 {
     flex-grow: 3;
-    /* enter needed declarations here */
-
 }
 
 .orange-circle {
@@ -110,9 +99,7 @@ section:nth-of-type(3) h3 {
     height: 5em;
     width: 5em;
     background: brown;
-    display: flex;
     flex-grow: 1.5;
-    align-items: stretch;
 }
 
 .large-brown-box:nth-of-type(2) {
@@ -120,7 +107,6 @@ section:nth-of-type(3) h3 {
 }
 
 section:nth-of-type(5) {
-    display: flex;
     justify-content: space-evenly;
 }
 
@@ -136,8 +122,6 @@ section:nth-of-type(6) {
     justify-content: space-between;
     align-content: space-around;
     align-items: center;
-
-    /* enter needed declarations here */
 }
 
 .grey-box {
