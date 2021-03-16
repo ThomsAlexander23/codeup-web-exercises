@@ -11,23 +11,17 @@ nav {
 ul {
   display: flex;
   align-items: center;
-  margin: auto;
+  margin: 0;
   padding: 0;
 }
 
 li {
-  font-family: "Work Sans", sans-serif;
-  font-size: smaller;
-  font-weight: bold;
+  font-family: "Work Sans";
+  font-size: .5em;
+  font-weight:bold;
   display: flex;
   list-style: none;
   margin: 0 5px;
-}
-li:nth-of-type(5) {
-  font-family: "Montserrat", sans-serif;
-  font-size: 3em;
-  padding: .2em 0;
-  margin: auto;
 }
 
 a {
@@ -37,12 +31,28 @@ a {
 a:hover {
   color: blue
 }
-/* .left {
+
+.left {
+  width:25%;
   display: flex;
-  align-self:  flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.center {
+  font-size: 1.5em;
+  font-family: "Montserrat", sans-serif;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .right {
+  width: 25%;
   display: flex;
-  align-self: flex-end;
-} */
+  justify-content: flex-end;
+  align-items: flex-end;
+}
