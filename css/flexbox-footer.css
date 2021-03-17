@@ -1,0 +1,127 @@
+* {
+  background-color: rgb(121, 201, 105);
+  width: 100%;
+  color: white;
+}
+
+body {
+  width: 100%;
+  font-size: .25em;
+  padding: 0em;
+  margin: 0em;
+}
+
+main {
+  width: 100%;
+  min-height: 1000vh;
+  background-color: aliceblue;
+}
+
+footer {
+  width: 100%;
+}
+
+div {
+  display: flex;
+  margin: 3em 4em;
+}
+
+h4 {
+  text-transform: uppercase;
+  margin: 1em 0;
+}
+
+p {
+  line-height: 1.5;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  line-height: 1.5;
+}
+
+input {
+  display:flex;
+  align-self: center;
+  color:white;
+  border: 1px solid white;
+  border-radius: 25px;
+  margin: 0 .5em;
+  height: 2em;
+}
+
+hr {
+  background-color: white;
+  width: 90%;
+  height: 1px;
+  border: none;
+}
+
+::placeholder {
+  font-size: .7em;
+  color: white;
+}
+
+.links {
+  display: flex;
+  flex-flow: row wrap;
+  align-self: flex-end;
+}
+
+.about {
+  width: 25%;
+  padding-left: 1.5%;
+  flex-direction: column;
+}
+
+.contact {
+  align-items: flex-end;
+  padding: 3em ;
+  width: 30%;
+  flex-direction: column;
+  margin: 0 15em;
+  
+}
+
+.media {
+  /* padding: 3em; */
+  /* width: 25%; */
+  flex-direction: column
+}
+
+.subscribe {
+  display:flex;
+  justify-content: flex-start;
+  margin: 4em .5em;
+}
+
+.links li {
+  display: inline-block;
+}
+
+.contact li {
+  display: inline-block;
+  line-height: 2;
+}
+
+input:first-of-type {
+  width: 9em;
+  padding: 0px 10px;
+  margin-left: 0;
+}
+
+input:nth-of-type(2) {
+  text-transform: uppercase;
+  font-size: .7em;
+  background-color: white;
+  color: green;
+  height: fit-content;
+  width: fit-content;
+  padding: 3em 5em;
+  text-align: center;
+}
