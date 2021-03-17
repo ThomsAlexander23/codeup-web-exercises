@@ -21,9 +21,16 @@ footer {
   width: 100%;
 }
 
-div {
+footer .upper-footer {
   display: flex;
-  margin: 3em 4em;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0em 0em;
+  margin-top: 5%
+}
+
+.upper-footer ul {
+  padding-left: 0em;
 }
 
 h4 {
@@ -39,10 +46,7 @@ ul {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-}
-
-li {
-  line-height: 1.5;
+  justify-content: space-between;
 }
 
 input {
@@ -67,45 +71,35 @@ hr {
   color: white;
 }
 
-.links {
-  display: flex;
-  flex-flow: row wrap;
-  align-self: flex-end;
-}
-
 .about {
-  width: 25%;
-  padding-left: 1.5%;
+  width: 20%;
+  padding-left: 5%;
   flex-direction: column;
 }
 
 .contact {
-  align-items: flex-end;
-  padding: 3em ;
-  width: 30%;
+  padding-left: 5% ;
+  padding-right: 5%;
+  width: 40%;
   flex-direction: column;
   margin: 0 15em;
   
 }
 
 .media {
-  /* padding: 3em; */
-  /* width: 25%; */
+  padding-right: 5%;
+  width: 20%;
   flex-direction: column
 }
 
 .subscribe {
+  position: relative;
   display:flex;
   justify-content: flex-start;
-  margin: 4em .5em;
-}
-
-.links li {
-  display: inline-block;
+  margin: 4em 0;
 }
 
 .contact li {
-  display: inline-block;
   line-height: 2;
 }
 
@@ -125,3 +119,24 @@ input:nth-of-type(2) {
   padding: 3em 5em;
   text-align: center;
 }
+
+/* .links ul{
+  width: 100%;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  list-style: none;
+  margin: 0;
+} */
+
+.lower-footer ul {
+  display: flex;
+  flex-direction:row;
+}
+
+.ownership {
+  text-align: right;
+  padding-right: 5%
+}
+
