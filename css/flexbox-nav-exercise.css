@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  font-family: "Montserrat", "Work Sans", sans-serif;
 }
 
 nav {
@@ -11,7 +10,6 @@ nav {
 ul {
   display: flex;
   align-items: center;
-  margin: 0;
   padding: 0;
 }
 
@@ -19,13 +17,15 @@ li {
   font-family: "Work Sans";
   font-size: .5em;
   font-weight:bold;
-  display: flex;
   list-style: none;
-  margin: 0 5px;
+  padding: 2em .5em;
 }
 
 a {
   display: inline-block;
+  position: relative;
+  padding: 2em;
+  margin: -2em;
 }
 
 a:hover {
@@ -47,7 +47,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  padding: 0;
+  padding: .1em;
 }
 
 .right {
@@ -55,4 +55,11 @@ a:hover {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+}
+
+.left ul li a {
+}
+
+p {
+  text-align: center
 }
