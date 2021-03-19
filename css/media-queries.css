@@ -76,4 +76,8 @@
     display: block;
     margin: auto;
   }
+
+  .sub-section{
+    margin-top: 5vh;
+  }
 }
