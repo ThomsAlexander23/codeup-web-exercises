@@ -7,7 +7,9 @@
     box-sizing: border-box;
   }
 
+
   body {
+    height: 100%;
     margin-left: 2vw;
     margin-right: 2vw;
   }
@@ -91,7 +93,8 @@
   body {
     display: flex;
     flex-flow: row wrap;
-    padding: .5em
+    padding: .5em;
+    height: 100%;
   }
 
   div {
@@ -142,13 +145,13 @@
   
   section:first-of-type {
     width: calc(60% - 1em);
-    padding: 1em;
+    /* padding: 1em; */
     margin: 0 auto;
   }
 
   section:last-of-type {
     width: calc(40% - 1em);
-    padding: 1em;
+    /* padding: 1em; */
     margin: auto;
   }
 
@@ -156,9 +159,14 @@
     display: none;
   }
 
+  footer {
+    margin-top: 0;
+    margin-bottom: 0
+  }
   footer p {
     width: 100%;
     position: relative;
-    margin-top: 20em
+    padding-top: 2em;
+    margin: 0;
   }
 }
