@@ -1,0 +1,40 @@
+.container .jumbotron {
+  background-image: url("../img/pizza.png");
+  background-size: cover;
+  width: 100%;
+  margin: 0;
+}
+
+.container .jumbotron h1 {
+  width: 120%;
+  margin-left: -1em;
+  text-align: center;
+  background-color: white;
+  opacity: .6;
+}
+
+.container>.card>.card-header {
+  color: white;
+  background-color: dodgerblue;
+}
+
+.card .card-subtitle {
+  border: 1px rebeccapurple solid
+}
+
+.card .card-footer button {
+  float: right
+}
+
+.card ul {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  border: 1px rebeccapurple solid;
+  margin-left: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 1rem 
+}
