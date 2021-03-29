@@ -29,7 +29,7 @@
 <button id='listColor' class="event">party time</button>
 <button id='firstItemBlue' class="event">not enough blue</button>
 <button id='completed' class="event">press for completion!</button>
-<button id='erase'>press once you press every button</button>
+<!--<button id='erase'>press once you press every button</button>-->
 
 <script>
     (function() {
@@ -38,11 +38,13 @@
         buttonOne.addEventListener('click', function(){
             var mainHeader = document.getElementById('main-header');
             mainHeader.innerHTML = "Javascript is Cool";
+            buttonOne.style.display = 'none'
         })
         var buttonTwo = document.getElementById('subHeaderColor');
         buttonTwo.addEventListener("click", function (){
             var subHeader = document.getElementById('sub-header');
             subHeader.style.color = 'blue'
+            buttonTwo.style.display = 'none'
         })
         var buttonThree = document.getElementById('listColor');
         buttonThree.addEventListener("click", function (){
@@ -53,6 +55,7 @@
                     listItems[i].style.color = 'grey';
                 }
             };
+            buttonThree.style.display = 'none'
         })
         var buttonFour = document.getElementById('firstItemBlue');
         buttonFour.addEventListener("click", function (){
@@ -63,20 +66,23 @@
                     listItems[i].style.color = 'blue';
                 }
             }
+            buttonFour.style.display = 'none'
         })
         var buttonFive = document.getElementById('completed');
         buttonFive.addEventListener("click", function (){
             var subParagraphs = document.getElementsByClassName('sub-paragraph');
-            subParagraphs[0].innerHTML = "Mission Accomplished"
+            subParagraphs[0].innerHTML = "Mission Accomplished";
+            buttonFive.style.display = 'none';
         })
 
-        var removeButtons = document.getElementById('erase');
-        removeButtons.addEventListener("click", function (){
-            var buttons = document.getElementsByClassName('event');
-            for (var i = 0; i < buttons.length; i++){
-                buttons[i].style.display = 'none'
-            }
-        })
+
+        // var removeButtons = document.getElementById('erase');
+        // removeButtons.addEventListener("click", function (){
+        //     var buttons = document.getElementsByClassName('event');
+        //     for (var i = 0; i < buttons.length; i++){
+        //         buttons[i].style.display = 'none'
+        //     }
+        // })
 
 
         // TODO: Uncomment next line and get the main header element by id
