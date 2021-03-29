@@ -103,8 +103,13 @@ fontLink.rel = 'stylesheet';
 fontLink.href = 'https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap';
 document.head.appendChild(fontLink);
 
+console.log(colorChange);
 for (var i = 0; i < colorChange.length; i++) {
-    colorChange[i].fontFamily = 'New Togomin, serif';
+    for (var j = 0; j < colorChange[i].length; j++) {
+        colorChange[i][j].style.fontFamily = 'new temogin, serif';
+    }
 }
-
+var topHeader = document.getElementById('top-header');
+topHeader.style.fontFamily = 'new temogin, serif';
+topHeader.style.color = 'rebeccapurple'
 // TODO (BONUS): That default bootstrap font is nice, but we've been adding our own fonts to things for a couple of weeks now! Add a font-family of some kind that you'd like it to adjust to.
