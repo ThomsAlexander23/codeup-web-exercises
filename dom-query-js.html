@@ -24,41 +24,82 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
+<button id='headerChange' class="event"></button>
+<button id='subHeaderColor' class="event"></button>
+<button id='listColor' class="event"></button>
+<button id='firstItemBlue' class="event"></button>
+<button id='completed' class="event"></button>
 
 <script>
     (function() {
         "use strict";
+        var buttonOne = document.getElementById('headerChange');
+        buttonOne.addEventListener('click', function(){
+            var mainHeader = document.getElementById('main-header');
+            mainHeader.innerHTML = "Javascript is Cool";
+        })
+        var buttonTwo = document.getElementById('subHeaderColor');
+        buttonTwo.addEventListener("click", function (){
+            var subHeader = document.getElementById('sub-header');
+            subHeader.style.color = 'blue'
+        })
+        var buttonThree = document.getElementById('listColor');
+        buttonThree.addEventListener("click", function (){
+            var listItems = document.getElementsByTagName('li');
+            console.log(listItems);
+            for (var i = 0; i < listItems.length; i++){
+                if (i % 2 === 0) {
+                    listItems[i].style.color = 'grey';
+                }
+            };
+        })
+        var buttonFour = document.getElementById('firstItemBlue');
+        buttonFour.addEventListener("click", function (){
+            var listItems = document.getElementsByTagName('li');
+            console.log(listItems);
+            for (var i = 0; i < listItems.length; i++) {
+                if (listItems[i].getAttribute('data-dbid') === '1'){
+                    listItems[i].style.color = 'blue';
+                }
+            }
+        })
+        var buttonFive = document.getElementById('completed');
+        buttonFive.addEventListener("click", function (){
+            var subParagraphs = document.getElementsByClassName('sub-paragraph');
+            subParagraphs[0].innerHTML = "Mission Accomplished"
+        })
+
         // TODO: Uncomment next line and get the main header element by id
-        var mainHeader = document.getElementById('main-header');
+        // var mainHeader = document.getElementById('main-header');
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-        mainHeader.innerHTML = "Javascript is Cool";
+        // mainHeader.innerHTML = "Javascript is Cool";
         // TODO: Uncomment the next line and get the sub header element by id
-        var subHeader = document.getElementById('sub-header');
+        // var subHeader = document.getElementById('sub-header');
 
         // TODO: Set the text color of subHeader to blue
-        subHeader.style.color = 'blue'
+        // subHeader.style.color = 'blue'
         // TODO: Uncomment the next line and get all list items
-        var listItems = document.getElementsByTagName('li');
-        console.log(listItems);
+        // var listItems = document.getElementsByTagName('li');
+        // console.log(listItems);
         // TODO: Set text color on every other list item to grey
-        for (var i = 0; i < listItems.length; i++){
-            if (i % 2 === 0) {
-                listItems[i].style.color = 'grey';
-            }
-        };
+        // for (var i = 0; i < listItems.length; i++){
+        //     if (i % 2 === 0) {
+        //         listItems[i].style.color = 'grey';
+        //     }
+        // };
         // TODO: Set text color of li with dbid = 1 to blue
-        for (var i = 0; i < listItems.length; i++) {
-            if (listItems[i].getAttribute('data-dbid') === '1'){
-                listItems[i].style.color = 'blue';
-            }
-        }
+        // for (var i = 0; i < listItems.length; i++) {
+        //     if (listItems[i].getAttribute('data-dbid') === '1'){
+        //         listItems[i].style.color = 'blue';
+        //     }
+        // }
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
-        var subParagraphs = document.getElementsByClassName('sub-paragraph');
+        // var subParagraphs = document.getElementsByClassName('sub-paragraph');
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
-        subParagraphs[0].innerHTML = "Mission Accomplished"
+        // subParagraphs[0].innerHTML = "Mission Accomplished"
     })();
 </script>
 </body>
