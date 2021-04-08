@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+</head>
+<body>
+    <header>
+        <h1>The Blog of Thoms</h1>
+    </header>
+    <!-- Main Section where posts are loaded -->
+    <main>
+        <div id="posts">
+
+        </div>
+    </main>
+
+
+
+
+<!-- JS and JSON below-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+<!--  IFFE function  -->
+    (function(){
+    //   functions for ajax fail done and always
+        function onAlways(){
+            console.log('...Loading Blog Posts');
+        }
+        function onFail(){
+            console.log("BLog Posts couldn't be loaded!");
+            console.log(jsXMR);
+            console.log(status)
+        }
+        function LoadBlogPosts(){
+            console.log("you are in the function")
+            var postLibrary = $.ajax("data/blog.json");
+            postLibrary.always(onAlways).fail(onFail).done(function(data){
+                $.each(data, function(index, post){
+                    var content = "";
+                    content += "<h2 class='blog-posts'>" + post.title + "</h2>";
+                    content += "<h6 class='dates'>" + post.date + "</h6>";
+                    content += "<h6 class='category'>" + post.categories + "</h6>";
+                    content += "<p class='blog-post'>" + post.content + "</p>";
+                    $('#posts').append(content);
+                    console.log("you are exiting the function")
+                })
+            })
+        }
+        LoadBlogPosts();
+    })()
+</script>
+</body>
+</html>

@@ -38,11 +38,12 @@
 
         inventory.always(onAlways).fail(onFail).done(function(data){
             $.each(data, function(index, product){
+                // if (product.)
                 var content = " ";
                 content += "<tr><td>" + product.title + "</td>";
                 content += "<td>" + product.quantity + "</td>";
                 content += "<td>" + product.price + "</td>";
-                content += "<td>" + product.category + "</td></tr>";
+                content += "<td>" + product.categories + "</td></tr>";
                 $('#insertProducts').append(content);
             })
         })
