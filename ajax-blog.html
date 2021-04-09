@@ -5,38 +5,53 @@
     <title>My Blog</title>
 </head>
 <body>
-    <header>
-        <h1>The Blog of Thoms</h1>
-    </header>
-    <!-- Main Section where posts are loaded -->
-    <main>
-        <div id="posts">
+<header>
+    <h1>The Blog of Thoms</h1>
+</header>
+<!-- Main Section where posts are loaded -->
+<main>
+    <div id="posts">
 
-        </div>
-    </main>
+    </div>
+    <div class="new-post" id="new-post-div">
+        <form>
+            <label for="title">Blog Entry Title</label>
+            <input class="new-post text" id="title" type="text"/>
+            <label for="date">Blog Entry Date</label>
+            <input class="new-post" id="date" type="date"/>
+            <label for="category">Blog Entry Categories</label>
+            <input class="new-post text" id="category" type="text"/>
+            <textarea class="new-post text" id="content" rows="10" col="50">Enter new post content here</textarea>
+            <button type="button" id="submit" class="new-post">Add Entry</button>
+        </form>
+    </div>
 
-
+</main>
 
 
 <!-- JS and JSON below-->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
-<!--  IFFE function  -->
-    (function(){
-    //   functions for ajax fail done and always
-        function onAlways(){
+    <!--  IFFE function  -->
+    (function () {
+        //   functions for ajax fail and always
+        function onAlways() {
             console.log('...Loading Blog Posts');
         }
-        function onFail(){
+
+        function onFail() {
             console.log("BLog Posts couldn't be loaded!");
             console.log(jsXMR);
             console.log(status)
         }
-        function LoadBlogPosts(){
+
+        // function loading posts from blog.json to html div #posts
+        function LoadBlogPosts() {
             console.log("you are in the function")
             var postLibrary = $.ajax("data/blog.json");
-            postLibrary.always(onAlways).fail(onFail).done(function(data){
-                $.each(data, function(index, post){
+            postLibrary.always(onAlways).fail(onFail).done(function (data) {
+                $.each(data, function (index, post) {
                     var content = "";
                     content += "<h2 class='blog-posts'>" + post.title + "</h2>";
                     content += "<h6 class='dates'>" + post.date + "</h6>";
@@ -47,7 +62,81 @@
                 })
             })
         }
+
         LoadBlogPosts();
+
+// function to check all input is not empty
+//         function formCheck(){
+
+
+        // function to gather and save input to JSON format
+        // function to send JSON variable to blog.json
+        // clear and regenerate blog posts
+        var date = '';
+        var title = '';
+        var category = '';
+        var contents ='';
+        $('#date').on('change', function () {
+            date = (this.value)
+        })
+        $('#title').on('input', function () {
+            title = this.value
+        })
+        $('#category').on('input', function () {
+            category = this.value
+        })
+        $('#content').on('input', function () {
+            content = this.value
+        })
+
+        ;
+
+
+        var formCheck = true
+        $('#submit').click(function (event) {
+            event.preventDefault();
+            if (formCheck === false) {
+                alert("you haven't filled the form out correctly!")
+                return false
+            }
+            var content = {};
+
+            if (formCheck === true) {
+                $('.new-post').each(function (index) {
+                    switch (index) {
+                        case 0:
+                            content.title = title
+                            console.log(title)
+                            console.log(content)
+                            break;
+                        case 1:
+                            content.date = date
+                            console.log(date)
+                            console.log(content)
+                            break;
+                        case 2:
+                            if (category.includes(",") || category.include(" ")){
+                                content.category = category.split(',')
+                            }
+
+                            console.log(category)
+                            console.log(content)
+                            break;
+                        case 3:
+                            content.content = contents
+                            console.log(contents)
+                            console.log(content)
+                            break;
+                    }
+                })
+
+
+                //grab input fields and save to JSON format
+
+            }
+
+
+        })
     })()
 </script>
 </body>

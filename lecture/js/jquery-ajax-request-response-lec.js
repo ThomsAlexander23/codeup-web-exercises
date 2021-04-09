@@ -10,23 +10,37 @@ $(document).ready(function(){
      *              INTRO TO AJAX
      ******************************************** */
 
-    /*
-     * TO DO TOGETHER: Let's make our first AJAX request. Generate a new Hookbin
-     * endpoint, then query it for a username...
-     */
-
-
-    /*
-     * TO DO TOGETHER: For this next one, we'll send over some data. Add the
-     * following JavaScript Object to your Hookbin AJAX request:
-     */
-
-
-
-    /*
-     * TO DO: Refactor the first example using a GET request object instead of
-     * appending a query to the url.
-     */
+    // /*
+    //  * TO DO TOGETHER: Let's make our first AJAX request. Generate a new Hookbin
+    //  * endpoint, then query it for a username...
+    //  */
+    // var hookbinURL = "https://hookb.in/yDRZoJmX2EHJNNPaRqLz";
+    // console.log($.ajax(hookbinURL));
+    //
+    // /*
+    //  * TO DO TOGETHER: For this next one, we'll send over some data. Add the
+    //  * following JavaScript Object to your Hookbin AJAX request:
+    //  */
+    // $.ajax(hookbinURL, {
+    //     method: "POST",
+    //     data: JSON.stringify(car)
+    // });
+    //
+    // //Send a get request and query for the username bob
+    // $.ajax(hookbinURL + "?username=bob");
+    //
+    //
+    // /*
+    //  * TO DO: Refactor the first example using a GET request object instead of
+    //  * appending a query to the url.
+    //  */
+    // $.ajax(hookbinURL, {
+    //     method: "GET",
+    //     data: {
+    //         username: "bob",
+    //         active: true
+    //     }
+    // })
 
 
     /*********************************************
@@ -37,13 +51,25 @@ $(document).ready(function(){
      * TO DO TOGETHER: Now, let's see how we can use AJAX requests to communicate with an
      * API and get data back. Uncomment the line below.
      */
+    var swapiBaseURL = "https://swapi.dev/api"
 
+    // $.ajax(swapiBaseURL + 'people/', {
+    //     method: "GET",
+    //     data: {
+    //         search: "r2"
+    //     }
+    // }).done(function(data){
+    //     console.log(data);
+    // })
 
 
     /*
      * TO DO: Look up the Star Wars API and make a similar request that would
      * return a list of all Star Wars films.
      */
+
+    //
+
 
 
 
@@ -56,7 +82,8 @@ $(document).ready(function(){
      * TO DO TOGETHER: Let's make a request to the books inventory we saved
       * previously.
      */
-    //var myBooks = ???
+    var library = "data/books.json"
+    // var myBooks = $.ajax(library);
 
     function onSuccess (data){
         console.log(data);
@@ -70,19 +97,20 @@ $(document).ready(function(){
         console.log("Looking for books...");
     }
 
+    // myBooks.done(onSuccess)
 
     /*
      * TO DO TOGETHER: What if we want to display a message if this AJAX request
      * fails?
      */
-
+    // myBooks.fail(onFail)
 
 
     /*
      * TO DO TOGETHER: How about a function that always runs whether the request
      * fails or not?
      */
-
+    // myBooks.always(onAlways)
 
 
     /*
@@ -90,11 +118,25 @@ $(document).ready(function(){
      * "Something wrong with your request..." if it fails.
      */
 
+    // var starWarsData = $.ajax(swapiBaseURL + "/films");
+    //
+    // starWarsData.fail(function(){
+    //     console.log("Something went wrong wirth your request")
+    // });
+
+
     /*
      * TO DO: Refactor your Star Wars API request to log a message that says
      * "...loading" whether the request fails or not.
      */
-
+    // starWarsData.always(function(){
+    //     console.log("...loading")
+    // });
+    //
+    // starWarsData.done(function(data){
+    //     console.log("data retrieved")
+    //     console.log(data)
+    // })
 
     /*
      * TO DO TOGETHER: Create a Star Wars API request that queries for "A
@@ -104,6 +146,28 @@ $(document).ready(function(){
       * that displays the director of the film.
      */
 
+    // var dirOfANewHope = $.ajax(swapiBaseURL + '/films', {
+    //     method: "GET",
+    //     data: {
+    //         search: 'A New Hope'
+    //     }
+    // })
+    //
+    // dirOfANewHope.done(function(data){
+    //     console.log(data)
+    // })
+
+    // alternate way to search that works
+    // var dirOfANewHope = starWarsData.done(function(data){
+    //     var films = data.results;
+    //     for (let i = 0; i < films.length; i++){
+    //         if (films[i].title === "A New Hope"){
+    //             return console.log(films[i].title)
+    //         }
+    //     }
+    //     console.log("cannot find what your looking for")
+    // })
+
 
 
 
@@ -112,12 +176,29 @@ $(document).ready(function(){
      * "The Force Awakens" and console log its release date.
      */
 
+    // var tfaReleaseDate = starWarsData.always(onAlways).done(function(data){
+    //     var films = data.results;
+    //     films.forEach(film, function(film){
+    //         if (film.title === "A New Hope"){
+    //             console.log(film.release_date)
+    //         }
+    //     })
+    // })
+
 
 
     /*
      * TO DO: Make a request to books.json. Return the author of "The
      * Canterbury Tales."
      */
+
+    var authorCT = $.ajax(library).always(onAlways()).done(function (data){
+        for (let i = 0; i < data.length; i++){
+            if(data[i].title === "The Canterbury Tales"){
+                console.log(data[i].author)
+            }
+        }
+    })
 
 
 
@@ -152,12 +233,24 @@ $(document).ready(function(){
      */
 
     // this variable stores our request
+    function generateBooks(){
+        var booksRequest = $.ajax(library);
+        booksRequest.always(onAlways).fail(onFail).done(function(data){
+            var content = " ";
+            $.each(data, function(index, book){
+                content += "<h2>" + book.title + "</h2>"
+                content += "<h4>" + book.author + "</h4>"
+            })
+            $("#main").append(content);
+        })
+    }
+
 
 
 
     // call the function to generate data on page load
 
-
+    generateBooks()
 
     /*
      * TO DO: Add your favorite book to the end of books.json.
@@ -169,6 +262,11 @@ $(document).ready(function(){
      */
 
     // event listener on refresh button
-
+    $("#refresh").click(function(e){
+        console.log("refreshing")
+        $('#main').html(' ')
+        generateBooks()
+        console.log("refresh")
+    })
 
 });
