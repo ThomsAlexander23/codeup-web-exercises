@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  Meta for standard and responsive design  -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Weather Map Project</title>
+    <!--  links for bootstrap CSS  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <h1 class="header-bar" id="header-title">Weather APP</h1>
+    <ul>
+        <li class="header-bar" id="header-current">Current City:</li>
+        <li class="header-bar" id="header-city-name">city</li>
+    </ul>
+</header>
+<main>
+    <div class="search-bar">
+        <form class="search-bar">
+            <label class="search-bar" for="search">Place</label>
+            <input class="search-bar" id="search" type="search">
+            <button class="search-bar" id="find" type="button">Find</button>
+        </form>
+    </div>
+    <div id="weatherDIV" class="weather"></div>
+    <div id="mapbox" class="map"></div>
+</main>
+
+
+
+<!--  script for JQuery, Popper.js, Bootstrap JS  -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!--  script for keys, mapboxAPI -->
+<script src="./js/keys.js"></script>
+<script src="./lecture/js/mapbox-geocoder-utils.js"></script>
+
+<!--  custom script for openWeatherAPI   -->
+<script>
+        "use strict"
+
+        $(document).ready(function(){
+
+            // variable for data from openWeather API
+            var weatherData = {};
+            // functions for fail and always methods for api requests
+            function onAlways() {
+                console.log('loading')
+            }
+
+            function onFail() {
+                console.log('error')
+                console.log(status)
+            }
+
+            // default location if geolocation not supported and call to api OpenWeather using mapbox geocode
+            function error(){
+                console.log("error getting position of device");
+                $('#search').attr('placeholder', 'San Antonio, TX');
+                alert('permission revoked, default position enabled');
+                geocode("San Antonio, TX", mapboxToken).then(function(results){
+                    var coordinates = results
+                    $.get("https://api.openweathermap.org/data/2.5/onecall", {
+                        appId: OPEN_WEATHER_APPID,
+                        lat: coordinates[1],
+                        lon: coordinates[0],
+                        units: "imperial",
+                        // exclude: "current, minutely,hourly,alerts"
+                    }).always(onAlways).fail(onFail).done(function (results) {
+                        weatherData = results
+                        console.log(results)
+                    })
+                })
+            }
+
+            // gather location of the device if supported and call to api OpenWeather using mapbox reverse geocode for location name
+            function success(position){
+                var initialLatitude = position.coords.latitude;
+                var initialLongitude = position.coords.longitude;
+                console.log(initialLatitude, initialLongitude)
+                reverseGeocode({lat: initialLatitude
+                    , lng: initialLongitude}, mapboxToken).then(function(results){
+                    console.log(results)
+                    $('#search').val(results)
+                    $.get("https://api.openweathermap.org/data/2.5/onecall", {
+                                appId: OPEN_WEATHER_APPID,
+                                lat: initialLatitude,
+                                lon: initialLongitude,
+                                units: "imperial",
+                                // exclude: "current, minutely,hourly,alerts"
+                            }).always(onAlways).fail(onFail).done(function (data) {
+                                weatherData = data
+                                console.log(data)
+                            })
+                })
+            }
+
+            // check for geolocation
+            if (!navigator.geolocation){
+                console.log('geolocation not supported by browser');
+                $('#search').attr('placeholder', 'San Antonio, TX')
+                alert('geolocation not supported');
+            }
+            else {
+                console.log('locating...');
+                navigator.geolocation.getCurrentPosition(success, error);
+            }
+
+            $(document).ready(function(){
+                // event for clicking the find button
+                $('#find').click(function(e){
+                    e.preventDefault();
+                    //retrieves the placeholder value
+                    if ($('#search').val() === ''){
+                        console.log($('#search').attr('placeholder'))
+                    }
+                    // retrieves the input value by user
+                    else {
+                        if($('#search').val())
+                            console.log($('#search').val())
+                    }
+                })
+
+                // function to get information from OpenWeather API for one day
+            })
+
+
+        });
+
+
+</script>
+</body>
+</html>
