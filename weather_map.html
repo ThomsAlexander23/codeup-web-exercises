@@ -6,9 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Weather Map Project</title>
     <!--  links for bootstrap CSS  -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--  links for mapbox  -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet'/>
+    <link rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+          type="text/css">
+
 </head>
 <body>
+<style>
+    .geocoder {
+        position: absolute;
+        z-index: 1;
+        width: 50%;
+        left: 50%;
+        margin-left: -25%;
+        top: 10px;
+    }
+</style>
 <header>
     <h1 class="header-bar" id="header-title">Weather APP</h1>
     <ul>
@@ -17,17 +34,13 @@
     </ul>
 </header>
 <main>
-    <div class="search-bar">
-        <form class="search-bar">
-            <label class="search-bar" for="search">Place</label>
-            <input class="search-bar" id="search" type="search">
-            <button class="search-bar" id="find" type="button">Find</button>
-        </form>
-    </div>
-    <div id="weatherDIV" class="weather"></div>
-    <div id="mapbox" class="map"></div>
-</main>
+    <div id="geocoder" class="geocoder"></div>
+    <div id="weatherDIV" class="weather d-flex flex-wrap"></div>
+    <div id='map' style='width: 100%; height: 300px;'></div>
+    <pre id="coordinates" class="coordinates"></pre>
 
+    <!--    <div id="map"></div>-->
+</main>
 
 
 <!--  script for JQuery, Popper.js, Bootstrap JS  -->
@@ -42,99 +55,187 @@
 
 <!--  script for keys, mapboxAPI -->
 <script src="./js/keys.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
 <script src="./lecture/js/mapbox-geocoder-utils.js"></script>
+
+<!-- Load the `mapbox-gl-geocoder` plugin. -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+      type="text/css">
+
+<!-- Promise polyfill script is required -->
+<!-- to use Mapbox GL Geocoder in IE 11. -->
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
 
 <!--  custom script for openWeatherAPI   -->
 <script>
-        "use strict"
+    "use strict"
 
-        $(document).ready(function(){
+    // function to convert time to a proper date
+    function dateConverter(num) {
+        var number = new Date(num * 1000).toString();
+        var properDate = number.slice(0, 15)
+        return (properDate)
+    }
 
-            // variable for data from openWeather API
-            var weatherData = {};
-            // functions for fail and always methods for api requests
-            function onAlways() {
-                console.log('loading')
-            }
+    // variable for data from openWeather API
+    var weatherData = {};
 
-            function onFail() {
-                console.log('error')
-                console.log(status)
-            }
+    // functions for fail and always methods for api requests
+    function onAlways() {
+        console.log('loading')
+    }
 
-            // default location if geolocation not supported and call to api OpenWeather using mapbox geocode
-            function error(){
-                console.log("error getting position of device");
-                $('#search').attr('placeholder', 'San Antonio, TX');
-                alert('permission revoked, default position enabled');
-                geocode("San Antonio, TX", mapboxToken).then(function(results){
-                    var coordinates = results
-                    $.get("https://api.openweathermap.org/data/2.5/onecall", {
-                        appId: OPEN_WEATHER_APPID,
-                        lat: coordinates[1],
-                        lon: coordinates[0],
-                        units: "imperial",
-                        // exclude: "current, minutely,hourly,alerts"
-                    }).always(onAlways).fail(onFail).done(function (results) {
-                        weatherData = results
-                        console.log(results)
-                    })
-                })
-            }
+    function onFail() {
+        console.log('error')
+    }
 
-            // gather location of the device if supported and call to api OpenWeather using mapbox reverse geocode for location name
-            function success(position){
-                var initialLatitude = position.coords.latitude;
-                var initialLongitude = position.coords.longitude;
-                console.log(initialLatitude, initialLongitude)
-                reverseGeocode({lat: initialLatitude
-                    , lng: initialLongitude}, mapboxToken).then(function(results){
-                    console.log(results)
-                    $('#search').val(results)
-                    $.get("https://api.openweathermap.org/data/2.5/onecall", {
-                                appId: OPEN_WEATHER_APPID,
-                                lat: initialLatitude,
-                                lon: initialLongitude,
-                                units: "imperial",
-                                // exclude: "current, minutely,hourly,alerts"
-                            }).always(onAlways).fail(onFail).done(function (data) {
-                                weatherData = data
-                                console.log(data)
-                            })
-                })
-            }
+    // function to get information from OpenWeather API for one day
+    function renderCard(object, index) {
+        var content = `<div id="weather-card-${index}" class="card">`
+        content += `<div class="card-header">${dateConverter(object.dt)}</div>`
+        content += `<div class="card-body">`
+        content += `<h5 class="card-title">${object.temp.max}°F/${object.temp.min}°F</h5>`
+        content += `<p class="card-text"><img id="weather-icon" src="http://openweathermap.org/img/w/${object.weather[0].icon}.png
+" /></p></div>`
+        content += `<p class="card-text">Description: <strong>${object.weather[0].description}</strong></p>`
+        content += `<ul class="list-group list-group-flush">`
+        content += `<li class="list-group-item">Humididty (%): <strong>${object.humidity}</strong></li>`
+        content += `<li class="list-group-item">Wind Speed (mph): <strong>${object.wind_speed}</strong></li>`
+        content += `<li class="list-group-item">Pressure (hPa): <strong>${object.pressure}</strong></li>`
+        content += `</ul></div>`
+        $('#weatherDIV').append(content)
+    }
 
-            // check for geolocation
-            if (!navigator.geolocation){
-                console.log('geolocation not supported by browser');
-                $('#search').attr('placeholder', 'San Antonio, TX')
-                alert('geolocation not supported');
-            }
-            else {
-                console.log('locating...');
-                navigator.geolocation.getCurrentPosition(success, error);
-            }
+    // //mapbox token = mapbox access
+    mapboxgl.accessToken = mapboxToken;
+    var defaultLocation = 'San Antonio, TX'
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/satellite-v9',
+        center: [0, 0],
+        Zoom: 10
+    })
+    var initialMarker = new mapboxgl.Marker({
+        color: 'cornflowerblue',
+        draggable: true
+    }).setLngLat({lng: 0, lat: 0}).addTo(map)
 
-            $(document).ready(function(){
-                // event for clicking the find button
-                $('#find').click(function(e){
-                    e.preventDefault();
-                    //retrieves the placeholder value
-                    if ($('#search').val() === ''){
-                        console.log($('#search').attr('placeholder'))
-                    }
-                    // retrieves the input value by user
-                    else {
-                        if($('#search').val())
-                            console.log($('#search').val())
-                    }
-                })
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+        marker: {
+            draggable: true,
+            color: 'red'
+        }
+    });
 
-                // function to get information from OpenWeather API for one day
+    document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+    // geocoder.on('result', function (result) {
+    //     initialMarker.remove()
+    //     geocode(result.place_name, mapboxToken).then(function (result) {
+    //         var lngLat = result
+    //         $.get("https://api.openweathermap.org/data/2.5/onecall", {
+    //             appId: OPEN_WEATHER_APPID,
+    //             lat: lngLat.lat,
+    //             lon: lngLat.lng,
+    //             units: "imperial",
+    //         }).always(onAlways).fail(onFail).done(function (data) {
+    //             console.log(data)
+    //             weatherData = data.daily;
+    //             weatherData.forEach(function (element, index) {
+    //                 if (index < 7) {
+    //                     renderCard(element, index)
+    //                 }
+    //             })
+    //         })
+    //     })
+    // })
+
+    function error() {
+        console.log("error getting position of device");
+        $('#search').val(defaultLocation);
+        $('#header-city-name').text(`${defaultLocation}`);
+        alert('permission revoked, default position enabled');
+        geocode(defaultLocation, mapboxToken).then(function (results) {
+            console.log(results)
+            map.flyTo({center: results, zoom: 13})
+            initialMarker.setLngLat(results)
+        })
+    }
+
+    function success(position) {
+        reverseGeocode({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        }, mapboxToken).then(function (results) {
+            $('#search').val(results);
+            $('#header-city-name').text(results);
+            map.flyTo({center: [position.coords.longitude, position.coords.latitude], zoom: 13})
+            initialMarker.setLngLat({lng: position.coords.longitude, lat: position.coords.latitude})
+            console.log('should have flown')
+        })
+        $.get("https://api.openweathermap.org/data/2.5/onecall", {
+            appId: OPEN_WEATHER_APPID,
+            lat: initialMarker.getLngLat().lat,
+            lon: initialMarker.getLngLat().lng,
+            units: "imperial",
+        }).always(onAlways).fail(onFail).done(function (data) {
+            console.log(data)
+            weatherData = data.daily;
+            weatherData.forEach(function (element, index) {
+                if (index < 7) {
+                    renderCard(element, index)
+                }
             })
+        })
+    }
 
+    if (!navigator.geolocation) {
+        geocode(defaultLocation, mapboxToken).then(function (results) {
+            console.log(results)
+            map.flyTo({center: results, zoom: 13})
+        })
+        console.log('geolocation not supported by browser');
+        $('#search').attr('placeholder', defaultLocation);
+        $('#header-city-name').text(defaultLocation);
+        alert('geolocation not supported');
+    } else {
+        console.log('locating...');
+        navigator.geolocation.getCurrentPosition(success, error);
 
-        });
+        console.log('done')
+    }
+
+    function onDragEnd() {
+        var lngLat = initialMarker.getLngLat();
+        reverseGeocode({lng: lngLat.lng, lat: lngLat.lat}, mapboxToken).then(function (results) {
+            $('#search').val(results);
+            $('#header-city-name').text(results);
+            $.get("https://api.openweathermap.org/data/2.5/onecall", {
+                appId: OPEN_WEATHER_APPID,
+                lat: lngLat.lat,
+                lon: lngLat.lng,
+                units: "imperial",
+            }).always(onAlways).fail(onFail).done(function (data) {
+                console.log(data)
+                weatherData = data.daily;
+                weatherData.forEach(function (element, index) {
+                    if (index < 7) {
+                        renderCard(element, index)
+                    }
+                })
+            })
+        })
+    }
+
+    initialMarker.on('dragend', onDragEnd);
+
+    //     $(document).ready(function () {
 
 
 </script>
