@@ -16,16 +16,6 @@
 
 </head>
 <body>
-<style>
-    .geocoder {
-        position: absolute;
-        z-index: 1;
-        width: 50%;
-        left: 50%;
-        margin-left: -25%;
-        top: 10px;
-    }
-</style>
 <header>
     <h1 class="header-bar" id="header-title">Weather APP</h1>
     <ul>
@@ -36,8 +26,7 @@
 <main>
     <div id="geocoder" class="geocoder"></div>
     <div id="weatherDIV" class="weather d-flex flex-wrap"></div>
-    <div id='map' style='width: 100%; height: 300px;'></div>
-    <pre id="coordinates" class="coordinates"></pre>
+    <div id='map' style='width: 100%; height: 500px;'></div>
 
     <!--    <div id="map"></div>-->
 </main>
@@ -64,12 +53,6 @@
       href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
       type="text/css">
 
-<!-- Promise polyfill script is required -->
-<!-- to use Mapbox GL Geocoder in IE 11. -->
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-
-
 <!--  custom script for openWeatherAPI   -->
 <script>
     "use strict"
@@ -83,6 +66,7 @@
 
     // variable for data from openWeather API
     var weatherData = {};
+    var currentData = {}
 
     // functions for fail and always methods for api requests
     function onAlways() {
@@ -91,6 +75,21 @@
 
     function onFail() {
         console.log('error')
+        alert('Bad Request')
+    }
+    var popUpContent = ''
+    //function for current data to display in popup friendly format
+    function renderCurrent(object) {
+        var content = `<div id="weather-card-current" class="card">`
+        content += `<div class="card-body">`
+        content += `<h5 class="card-title">${object.temp}°F</h5>`
+        content += `<p class="card-text"><img id="weather-icon" src="http://openweathermap.org/img/w/${object.weather[0].icon}.png
+" /></p></div>`
+        content += `<ul class="list-group list-group-flush">`
+        content += `<li class="list-group-item">Humididty (%): <strong>${object.humidity}</strong></li>`
+        content += `<li class="list-group-item">Wind Speed (mph): <strong>${object.wind_speed}</strong></li>`
+        content += `<li class="list-group-item">Feels like <strong>${object.feels_like}°F</strong></li></ul></div>`
+        popUpContent = content
     }
 
     // function to get information from OpenWeather API for one day
@@ -127,34 +126,35 @@
     var geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl,
-        marker: {
-            draggable: true,
-            color: 'red'
-        }
+        marker: false
     });
 
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 
-    // geocoder.on('result', function (result) {
-    //     initialMarker.remove()
-    //     geocode(result.place_name, mapboxToken).then(function (result) {
-    //         var lngLat = result
-    //         $.get("https://api.openweathermap.org/data/2.5/onecall", {
-    //             appId: OPEN_WEATHER_APPID,
-    //             lat: lngLat.lat,
-    //             lon: lngLat.lng,
-    //             units: "imperial",
-    //         }).always(onAlways).fail(onFail).done(function (data) {
-    //             console.log(data)
-    //             weatherData = data.daily;
-    //             weatherData.forEach(function (element, index) {
-    //                 if (index < 7) {
-    //                     renderCard(element, index)
-    //                 }
-    //             })
-    //         })
-    //     })
-    // })
+    geocoder.on('result', function (result) {
+        $('#header-city-name').text($('.mapboxgl-ctrl-geocoder--input').val())
+        console.log(result.result.center)
+        initialMarker.setLngLat({lng: result.result.center[0], lat: result.result.center[1]}).addTo(map)
+        console.log(result.result.center)
+        $.get("https://api.openweathermap.org/data/2.5/onecall", {
+            appId: OPEN_WEATHER_APPID,
+            lat: result.result.center[1],
+            lon: result.result.center[0],
+            units: "imperial",
+        }).always(onAlways).fail(onFail).done(function (data) {
+            currentData = data.current;
+            renderCurrent(currentData)
+            initialMarker.setPopup(new mapboxgl.Popup({closeButton: false, closeOnMove: true}).setHTML(popUpContent))
+            console.log(data)
+            weatherData = data.daily;
+            $('#weatherDIV').html(' ')
+            weatherData.forEach(function (element, index) {
+                if (index < 7) {
+                    renderCard(element, index)
+                }
+            })
+        })
+    })
 
     function error() {
         console.log("error getting position of device");
@@ -165,32 +165,55 @@
             console.log(results)
             map.flyTo({center: results, zoom: 13})
             initialMarker.setLngLat(results)
+            $.get("https://api.openweathermap.org/data/2.5/onecall", {
+                appId: OPEN_WEATHER_APPID,
+                lat: initialMarker.getLngLat().lat,
+                lon: initialMarker.getLngLat().lng,
+                units: "imperial",
+            }).always(onAlways).fail(onFail).done(function (data) {
+                currentData = data.current;
+                renderCurrent(currentData)
+                initialMarker.setPopup(new mapboxgl.Popup({closeButton: false, closeOnMove: true}).setHTML(popUpContent))
+                console.log(data)
+                weatherData = data.daily;
+                $('#weatherDIV').html(' ')
+                weatherData.forEach(function (element, index) {
+                    if (index < 7) {
+                        renderCard(element, index)
+                    }
+                })
+            })
         })
     }
 
     function success(position) {
+        console.log(position)
         reverseGeocode({
             lat: position.coords.latitude,
             lng: position.coords.longitude
         }, mapboxToken).then(function (results) {
-            $('#search').val(results);
             $('#header-city-name').text(results);
             map.flyTo({center: [position.coords.longitude, position.coords.latitude], zoom: 13})
             initialMarker.setLngLat({lng: position.coords.longitude, lat: position.coords.latitude})
-            console.log('should have flown')
-        })
-        $.get("https://api.openweathermap.org/data/2.5/onecall", {
-            appId: OPEN_WEATHER_APPID,
-            lat: initialMarker.getLngLat().lat,
-            lon: initialMarker.getLngLat().lng,
-            units: "imperial",
-        }).always(onAlways).fail(onFail).done(function (data) {
-            console.log(data)
-            weatherData = data.daily;
-            weatherData.forEach(function (element, index) {
-                if (index < 7) {
-                    renderCard(element, index)
-                }
+            console.log("in here")
+            $.get("https://api.openweathermap.org/data/2.5/onecall", {
+                appId: OPEN_WEATHER_APPID,
+                lat: initialMarker.getLngLat().lat,
+                lon: initialMarker.getLngLat().lng,
+                units: "imperial",
+            }).always(onAlways).fail(onFail).done(function (data) {
+                console.log(data)
+                currentData = data.current;
+                renderCurrent(currentData)
+                initialMarker.setPopup(new mapboxgl.Popup({closeButton: false, closeOnMove: true}).setHTML(popUpContent));
+                console.log(currentData)
+                weatherData = data.daily;
+                $('#weatherDIV').html(' ')
+                weatherData.forEach(function (element, index) {
+                    if (index < 7) {
+                        renderCard(element, index)
+                    }
+                })
             })
         })
     }
@@ -199,16 +222,33 @@
         geocode(defaultLocation, mapboxToken).then(function (results) {
             console.log(results)
             map.flyTo({center: results, zoom: 13})
+            $.get("https://api.openweathermap.org/data/2.5/onecall", {
+                appId: OPEN_WEATHER_APPID,
+                lat: results[1],
+                lon: results[0],
+                units: "imperial",
+            }).always(onAlways).fail(onFail).done(function(data) {
+                currentData = data.current;
+                renderCurrent(currentData)
+                initialMarker.setPopup(new mapboxgl.Popup({closeButton: false, closeOnMove: true}).setHTML(popUpContent))
+                console.log(data)
+                weatherData = data.daily;
+                weatherData.forEach(function (element, index) {
+                    if (index < 7) {
+                        renderCard(element, index)
+                    }
+                })
+            })
         })
         console.log('geolocation not supported by browser');
-        $('#search').attr('placeholder', defaultLocation);
         $('#header-city-name').text(defaultLocation);
         alert('geolocation not supported');
-    } else {
-        console.log('locating...');
-        navigator.geolocation.getCurrentPosition(success, error);
 
-        console.log('done')
+    }
+    else {
+        console.log('locating...');
+        navigator.geolocation.getCurrentPosition(success, error)
+        console.log('done');
     }
 
     function onDragEnd() {
@@ -222,8 +262,12 @@
                 lon: lngLat.lng,
                 units: "imperial",
             }).always(onAlways).fail(onFail).done(function (data) {
+                currentData = data.current;
+                renderCurrent(currentData)
+                initialMarker.setPopup(new mapboxgl.Popup({closeButton: false, closeOnMove: true}).setHTML(popUpContent))
                 console.log(data)
                 weatherData = data.daily;
+                $('#weatherDIV').html(' ')
                 weatherData.forEach(function (element, index) {
                     if (index < 7) {
                         renderCard(element, index)
@@ -232,6 +276,7 @@
             })
         })
     }
+
 
     initialMarker.on('dragend', onDragEnd);
 
