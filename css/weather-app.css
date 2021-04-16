@@ -4,22 +4,79 @@
 
 body {
     font-family: "Josefin Sans", sans-serif;
-    background-color: #25476a;
-    color: gainsboro;
+    background-color: #343A40;
+    color: black;
     margin: 0;
 }
+#openModal {
+    color: rebeccapurple !important;
+    background-color: #343A40;
+}
+
+
 .container{
-    background-color: #25476a;
+    background-color: #343A40;
 }
 
-#weatherDIV .card {
-    border: 2px black solid;
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(102, 51, 153, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    border-color: rebeccapurple !important;
+}
+.navbar-light .navbar-toggler {
+    border-color: rebeccapurple !important;
+}
+
+#weatherDIV .card, .card {
     color: white;
-    background-color: rgba(255,255,255,.05);
+    border: none;
+    border-left: solid 2px ghostwhite;
+    background: rgba(255,255,255,.0) !important;
 }
 
-#weatherDIV .card li {
+#weatherDIV .card li, #current-weather .card li {
     border: none;
-    color: black;
+    color: white;
+    background: rgba(255,255,255,.0) !important;
 }
+
+.modal-dialog {
+    width: calc(100% - 1%) !important;
+    height: 100% !important;
+    max-width: 1200px;
+    max-height: 1200px;
+    margin: auto;
+    align-items: center;
+}
+
+.modal-content {
+    background: rgba(255,255,255,.30) !important;
+}
+
+#map {
+    position: relative;
+}
+
+.modal {
+    position: absolute !important;
+
+}
+
+.modal-footer{
+    border-top: none;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-title {
+    color: white;
+}
+
+.modal-open {
+    overflow: revert;
+}
+
+
+
 
