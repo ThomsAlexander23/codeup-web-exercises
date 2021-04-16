@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--  Meta for standard and responsive design  -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Weather Map Project</title>
+    <!--  links for bootstrap CSS  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--  links for mapbox  -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet'/>
+    <link rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+          type="text/css">
+    <!--  custom css below  -->
+    <link rel="stylesheet" href="css/weather-app.css">
+
+</head>
+<body>
+<!--     Button trigger modal -->
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a id="openModal" data-toggle="modal" data-target="myModal" class="navbar-brand" href="#">Jupiter's Tears</a>
+    <button id="togglerIcon" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div id="geocoder" class="geocoder ml-auto"></div>
+    </div>
+</nav>
+<div class="container">
+    <div id='map' style='width: 100%; height: 80vh ;'>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog"
+             aria-labelledby="myModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog" role="document">
+                <div class="modal-content align-center">
+                    <div class="modal-header pb-0 border-0">
+                        <h3 class="modal-title header-bar" id="header-city-name">city</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body container-fluid card py-0 border-0">
+                        <div id="current-weather" class=""></div>
+                        <div class="row"><div id="weatherDI" class="col-12"><div id="weatherDIV" class="row justify-content-start"></div></div></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="seven-day" type="button" class="btn btn-primary seven-day" value="7">7 Day</button>
+                        <button id="five-day" type="button" class="btn btn-primary five-day" value="5">5 Day</button>
+                        <button id="three-day" type="button" class="btn btn-primary three-day" value="3">3 Day</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--  script for JQuery, Popper.js, Bootstrap JS  -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!--  script for keys, mapboxAPI -->
+<script src="./js/keys.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+<script src="./lecture/js/mapbox-geocoder-utils.js"></script>
+
+<!-- Load the `mapbox-gl-geocoder` plugin. -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+      type="text/css">
+
+<!--  custom script for openWeatherAPI   -->
+<script>
+    "use strict"
+    $("#myModal").modal('show')
+    // modal to be attached inside of map but maintain click anywhere on page outside of modal to close
+    $("#openModal").on("click",function(){
+
+        $("#myModal").modal("show");
+
+        // appending modal background inside the blue div
+        // $('.modal-backdrop').appendTo('body');
+
+        // remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
+        $('body').removeClass("modal-open").css("padding-right","");
+    });
+
+
+    // function to convert time to a proper date
+    function dateConverter(num) {
+        var number = new Date(num * 1000).toString();
+        var properDate = [(number.slice(4, 15)), (number.slice(0, 3))]
+        return properDate
+    }
+
+    // functions for fail and always methods for api requests
+    function onAlways() {
+        console.log('loading')
+    }
+
+    function onFail() {
+        console.log('error'); alert('Bad Request')
+    }
+
+    var popUpContent = ''
+    var value = 0
+
+    //function for current data to display in popup friendly format
+    function renderCurrent(object) {
+        var content = `<div id="weather-card-current" class="card border-0">`
+        content += `<div class="card-body py-0 row align-items-center">`
+        content += `<div class="col-12 py-0"<h5 class="card-title">Current Weather:</h5>`
+        content += `<ul class=" text-center list-group list-group-flush py-0 border-0">`
+        content += `<div class="row"><li class="list-group-item py-0 border-0 col-3">${object.temp.toFixed(0)}°F<br><img id="weather-icon" src="http://openweathermap.org/img/w/${object.weather[0].icon}.png
+" alt=""/></li>`
+        content += `<li class="list-group-item py-0 border-0 col-3">Humidity:<br><strong>${object.humidity.toFixed(0)}%</strong></li>`
+        content += `<li class="list-group-item py-0 border-0 col-3">Wind Speed:<br><strong>${object.wind_speed.toFixed(0)}mph</strong></li>`
+        content += `<li class="list-group-item py-0 border-0 col-3">Feels like <strong><br>${object.feels_like.toFixed(0)}°F</strong></li></ul></div></div></div>`
+        popUpContent = content
+    }
+
+    // function to get information from OpenWeather API for one day
+    function renderCard(object, index) {
+        var content = `<div id="weather-card-${index}" class="card ml-1 pl-1">`
+        content += `<div class="d-md-none d-flex p-0 card-header">${dateConverter(object.dt)[1]}</div>`
+        content += `<div class="d-none d-md-flex card-header border-0 p-0 ">${dateConverter(object.dt)[0]}</div>`
+        content += `<div class="card-body p-0">`
+        content += `<p class="card-title mb-0">${object.temp.max.toFixed(0)}°F/${object.temp.min.toFixed(0)}°F</p>`
+        content += `<p class="card-text"><img id="weather-icon" src="http://openweathermap.org/img/w/${object.weather[0].icon}.png
+" alt=""/></p></div>`
+        content += `<ul class="list-group list-group-flush ">`
+        content += `<li class="list-group-item p-0 pl-1 d-none d-md-flex">${object.weather[0].description}</li>`
+        content += `<li class="list-group-item p-0 pl-1"><strong>${object.humidity}</strong>%</li>`
+        content += `<li class="list-group-item p-0 pl-1"><strong>${object.wind_speed.toFixed(0)}</strong>mph</li>`
+        content += `<li class="list-group-item p-0 pl-1"><strong>${object.pressure}</strong>hPa</li>`
+        content += `</ul></div>`
+        $('#weatherDIV').append(content)
+    }
+
+    //mapbox token = mapbox access
+    mapboxgl.accessToken = mapboxToken;
+    var defaultLocation = 'San Antonio, TX'
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/satellite-v9',
+        center: [0, 0],
+        Zoom: 10
+    })
+    //mapbox marker generation
+    var initialMarker = new mapboxgl.Marker({
+        color: 'cornflowerblue',
+        draggable: true
+    }).setLngLat({lng: 0, lat: 0}).addTo(map)
+    //mapbox geocoder generation
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+        marker: false
+    });
+    document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+    // event to load and display proper data upon input into geocoder
+    geocoder.on('result', function (result) {
+        $('#header-city-name').text($('.mapboxgl-ctrl-geocoder--input').val())
+        initialMarker.setLngLat({lng: result.result.center[0], lat: result.result.center[1]}).addTo(map)
+        $.get("https://api.openweathermap.org/data/2.5/onecall", {
+            appId: OPEN_WEATHER_APPID,
+            lat: result.result.center[1],
+            lon: result.result.center[0],
+            units: "imperial",
+        }).always(onAlways).fail(onFail).done(function (data) {
+            renderCurrent(data.current)
+            $('#current-weather').html(popUpContent)
+            $('#weatherDIV').html(' ')
+            data.daily.forEach(function (element, index) {
+                if (index < value){
+                    renderCard(element, index)
+                }
+                $("#myModal").modal('show')
+            })
+
+        })
+    })
+
+    // function for error callback if geolocation disabled by user
+    function error() {
+        $('#header-city-name').text(defaultLocation);
+        alert('default position enabled');
+        geocode(defaultLocation, mapboxToken).then(function (results) {
+            map.flyTo({center: results, zoom: 13})
+            initialMarker.setLngLat(results)
+            $.get("https://api.openweathermap.org/data/2.5/onecall", {
+                appId: OPEN_WEATHER_APPID,
+                lat: initialMarker.getLngLat().lat,
+                lon: initialMarker.getLngLat().lng,
+                units: "imperial",
+            }).always(onAlways).fail(onFail).done(function (data) {
+                renderCurrent(data.current)
+                console.log(data)
+                $('#current-weather').html(popUpContent);
+            })
+        })
+    }
+
+    // function for successful geolocation of user, load/display correct information
+    function success(position) {
+        reverseGeocode({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        }, mapboxToken).then(function (results) {
+            $('#header-city-name').text(results);
+            map.flyTo({center: [position.coords.longitude, position.coords.latitude], zoom: 13})
+            initialMarker.setLngLat({lng: position.coords.longitude, lat: position.coords.latitude})
+            $.get("https://api.openweathermap.org/data/2.5/onecall", {
+                appId: OPEN_WEATHER_APPID,
+                lat: initialMarker.getLngLat().lat,
+                lon: initialMarker.getLngLat().lng,
+                units: "imperial",
+            }).always(onAlways).fail(onFail).done(function (data) {
+                renderCurrent(data.current)
+                $('#current-weather').html(popUpContent);
+            })
+        })
+    }
+
+    // if/else for geolocation capability of user equiptment
+    if (!navigator.geolocation) {
+        console.log('geolocation not supported by browser');
+        $('#header-city-name').text(defaultLocation);
+        error()
+        alert('geolocation not supported');
+    } else {
+        console.log('locating...');
+        navigator.geolocation.getCurrentPosition(success, error)
+        console.log('done');
+    }
+
+    // function for updating infromation followed by generation of the new information
+    function onDragEnd() {
+        var lngLat = initialMarker.getLngLat();
+        console.log('hey')
+        reverseGeocode({lng: lngLat.lng, lat: lngLat.lat}, mapboxToken).then(function (results) {
+            $('#header-city-name').text(results);
+            $.get("https://api.openweathermap.org/data/2.5/onecall", {
+                appId: OPEN_WEATHER_APPID,
+                lat: lngLat.lat,
+                lon: lngLat.lng,
+                units: "imperial",
+            }).always(onAlways).fail(onFail).done(function (data) {
+                renderCurrent(data.current)
+                $('#current-weather').html(popUpContent);
+                $('#weatherDIV').html(' ')
+                data.daily.forEach(function (element, index) {
+                    if (index < value){
+                        renderCard(element, index)
+                    }
+                })
+            })
+            $("#myModal").modal('show')
+        })
+    }
+
+    // // function for updating card rendering based on radio input
+    function forecastDisplay(){
+        var lngLat = initialMarker.getLngLat();
+        $.get("https://api.openweathermap.org/data/2.5/onecall", {
+            appId: OPEN_WEATHER_APPID,
+            lat: lngLat.lat,
+            lon: lngLat.lng,
+            units: "imperial",
+        }).always(onAlways).fail(onFail).done(function (data) {
+            renderCurrent(data.current)
+            $('#current-weather').html(popUpContent);
+            $('#weatherDIV').html(' ')
+            data.daily.forEach(function (element, index) {
+                if (index < value){
+                    renderCard(element, index)
+                }
+
+            })
+        })
+    }
+
+    // $(window).on('load',function(){
+    //     if ($(window).innerWidth() < 576){
+    //         $('#three-day').attr('checked', true)
+    //         forecastDisplay()
+    //     }
+    //     else if ($(window).innerWidth() > 922){
+    //         $('#seven-day').attr('checked', true)
+    //         forecastDisplay()
+    //     }
+    // })
+    // $(window).on('resize',function(){
+    //     if ($(window).innerWidth() < 576){
+    //         $('#three-day').attr('checked', true)
+    //         forecastDisplay()
+    //     }
+    //     else if ($(window).innerWidth() > 922){
+    //         $('#seven-day').attr('checked', true)
+    //         forecastDisplay()
+    //     }
+    //     else {
+    //         $('#five-day').attr('checked', true)
+    //         forecastDisplay()
+    //     }
+    // })
+
+    // event for proper display based on radio button selection, updates as changed
+    $("#seven-day").click(function(){
+        value = $("#seven-day").val()
+        forecastDisplay()
+    })
+    $("#three-day").click(function(){
+        value = $("#three-day").val()
+        forecastDisplay()
+    })
+    $("#five-day").click(function(){
+        value = $("#five-day").val()
+        forecastDisplay()
+    })
+    initialMarker.on('dragend', onDragEnd);
+    //     $(document).ready(function () {
+</script>
+</body>
+</html>
